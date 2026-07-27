@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr4dv6oh2b8by"
-path="res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"
+uid="uid://chy35h4nh67bu"
+path="res://.godot/imported/giorgio_idle.fbx-792095fbb6034055151ce3c89d5ee611.scn"
 
 [deps]
 
-source_file="res://animations/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"]
+source_file="res://animations/giorgio_idle.fbx"
+dest_files=["res://.godot/imported/giorgio_idle.fbx-792095fbb6034055151ce3c89d5ee611.scn"]
 
 [params]
 

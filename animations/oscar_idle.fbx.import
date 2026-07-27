@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2xn0byhmlth5"
-path="res://.godot/imported/mia.fbx-4130dda5571e02b48a0481474ad4f132.scn"
+uid="uid://cske0e1ahsxss"
+path="res://.godot/imported/oscar_idle.fbx-114c8a88313da90adeb2382244f74fcd.scn"
 
 [deps]
 
-source_file="res://_backups/mia_original/mia.fbx"
-dest_files=["res://.godot/imported/mia.fbx-4130dda5571e02b48a0481474ad4f132.scn"]
+source_file="res://animations/oscar_idle.fbx"
+dest_files=["res://.godot/imported/oscar_idle.fbx-114c8a88313da90adeb2382244f74fcd.scn"]
 
 [params]
 

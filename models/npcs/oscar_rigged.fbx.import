@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr4dv6oh2b8by"
-path="res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"
+uid="uid://em7yhf7quqaf"
+path="res://.godot/imported/oscar_rigged.fbx-fd2b9aac28fdc1739315bc03f598ebd6.scn"
 
 [deps]
 
-source_file="res://animations/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"]
+source_file="res://models/npcs/oscar_rigged.fbx"
+dest_files=["res://.godot/imported/oscar_rigged.fbx-fd2b9aac28fdc1739315bc03f598ebd6.scn"]
 
 [params]
 

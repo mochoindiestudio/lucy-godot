@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr4dv6oh2b8by"
-path="res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"
+uid="uid://44leuh5woort"
+path="res://.godot/imported/bella_talk.fbx-98f25a98fc21419357ac39563f2f807e.scn"
 
 [deps]
 
-source_file="res://animations/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"]
+source_file="res://animations/bella_talk.fbx"
+dest_files=["res://.godot/imported/bella_talk.fbx-98f25a98fc21419357ac39563f2f807e.scn"]
 
 [params]
 

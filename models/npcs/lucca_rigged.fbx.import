@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr4dv6oh2b8by"
-path="res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"
+uid="uid://cpcqlawnh2i1p"
+path="res://.godot/imported/lucca_rigged.fbx-98a61d4dbf76b551fb40cd5a3090408e.scn"
 
 [deps]
 
-source_file="res://animations/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"]
+source_file="res://models/npcs/lucca_rigged.fbx"
+dest_files=["res://.godot/imported/lucca_rigged.fbx-98a61d4dbf76b551fb40cd5a3090408e.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dr4dv6oh2b8by"
-path="res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"
+uid="uid://ccyy0tyh7trkn"
+path="res://.godot/imported/mario_rigged.fbx-3a246567857e1fbe23581ca93ec6b60b.scn"
 
 [deps]
 
-source_file="res://animations/idle.fbx"
-dest_files=["res://.godot/imported/idle.fbx-1ea80bb326526819f6a1056096232755.scn"]
+source_file="res://models/npcs/mario_rigged.fbx"
+dest_files=["res://.godot/imported/mario_rigged.fbx-3a246567857e1fbe23581ca93ec6b60b.scn"]
 
 [params]
 
