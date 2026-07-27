@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bemy8hu5f7hky"
-path="res://.godot/imported/talking_1.fbx-7d9d69dfc0c4bf3ea982e66cae65abbf.scn"
+uid="uid://uhieq0so5hv3"
+path="res://.godot/imported/lucy_rigged.fbx-95a8034b59d1bf4ff222855efe0bfd91.scn"
 
 [deps]
 
-source_file="res://animations/talking_1.fbx"
-dest_files=["res://.godot/imported/talking_1.fbx-7d9d69dfc0c4bf3ea982e66cae65abbf.scn"]
+source_file="res://models/lucy/lucy_rigged.fbx"
+dest_files=["res://.godot/imported/lucy_rigged.fbx-95a8034b59d1bf4ff222855efe0bfd91.scn"]
 
 [params]
 

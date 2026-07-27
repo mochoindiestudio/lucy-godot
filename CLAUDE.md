@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-"Lucy A luz do Amor" is a Godot 4.7 (Forward+ rendering, Jolt Physics) 3D game project. It is early-stage: `game.tscn` is currently a single empty `Node3D` root, and there are no project-specific GDScript files yet outside of the installed addons. Character/NPC/building assets (`.fbx` models, animation clips) are in place under `models/` and `animations/` but not yet wired into scenes or scripts.
+"Lucy A luz do Amor" is a Godot 4.7 (Forward+ rendering, Jolt Physics) 3D game project. It is early-stage: the main scene, `char_test.tscn`, is currently a character-animation test ground rather than actual gameplay — it places Lucy and the NPCs side by side with UI buttons to preview each character's animation states.
 
 The project has no build step in the traditional sense — it is opened and run through the Godot editor.
 
@@ -29,7 +29,7 @@ Each of the three `rubonnek.*` managers ships a matching editor debugger panel u
 
 ## Directory structure notes
 
-- `models/` — game-specific FBX character/building models with baked textures: the player character (`lucy.fbx`), NPCs (`bella`, `giorgio`, `mario`, `mia`, `oscar`, `spark`), and `buildings/cat_statue.fbx`.
-- `animations/` — shared FBX animation clips (`idle`, `walking`, `slow_run`, `talking_1`, `talking_2`) intended to be applied across the character models above.
+- `models/` — game-specific FBX character/building models with baked textures, each rigged individually: the player character (`models/lucy/lucy_rigged.fbx`), NPCs under `models/npcs/` (`bella`, `giorgio`, `lucca`, `mario`, `mia`, `oscar`), and `buildings/cat_statue.fbx`.
+- `animations/` — per-character FBX animation clips (e.g. `lucy_idle.fbx`, `bella_talk.fbx`, `giorgio_bubbles.fbx`). Each character owns its own clips baked on its own rig; they are not shared across characters.
 - `demo/` and `demos/` — sample scenes and scripts bundled with the `terrain_3d` and `rubonnek.*` manager addons respectively (e.g. `demo/src/Player.gd`, `demo/src/Enemy.gd`, `demos/1. simple achievement/`, etc.). These are third-party addon documentation/examples, not part of this game's own code — don't confuse them with project game logic when searching for existing gameplay implementations.
-- `game.tscn` — the project's actual entry scene (currently just an empty `Node3D` named "Game").
+- `char_test.tscn` — the project's main scene, used as an animation test ground for Lucy and the NPCs (see `characters/`, `tools/build_character_scenes.gd`, and `ui/animation_showcase_ui.gd`).

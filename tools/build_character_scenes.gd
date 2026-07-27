@@ -12,14 +12,15 @@ const PREVIEW_SCRIPT_PATH := "res://characters/character_preview.gd"
 const CHARACTERS := [
 	{
 		"id": "lucy",
-		"source": "res://models/lucy.fbx",
+		"source": "res://models/lucy/lucy_rigged.fbx",
 		"out": "res://characters/lucy.tscn",
+		"albedo": "res://models/lucy/lucy_rigged.png",
 		"anim_sources": {
-			"idle": "res://animations/idle.fbx",
-			"walking": "res://animations/walking.fbx",
-			"slow_run": "res://animations/slow_run.fbx",
-			"talking_1": "res://animations/talking_1.fbx",
-			"talking_2": "res://animations/talking_2.fbx",
+			"idle": "res://animations/lucy_idle.fbx",
+			"walking": "res://animations/lucy_walking.fbx",
+			"running": "res://animations/lucy_running.fbx",
+			"talk_1": "res://animations/lucy_talk_1.fbx",
+			"talk_2": "res://animations/lucy_talk_2.fbx",
 		},
 	},
 	{
@@ -201,7 +202,18 @@ func _build_state_machine(state_names: Array) -> AnimationNodeStateMachine:
 			var transition := AnimationNodeStateMachineTransition.new()
 			transition.switch_mode = AnimationNodeStateMachineTransition.SWITCH_MODE_IMMEDIATE
 			transition.xfade_time = XFADE_TIME
-			transition.advance_mode = AnimationNodeStateMachineTransition.ADVANCE_MODE_DISABLED
+			# Without an explicit curve, the engine skips the crossfade and
+			# snaps instantly regardless of xfade_time.
+			transition.xfade_curve = _build_ease_curve()
+			# ADVANCE_MODE_DISABLED silently blocks the crossfade too; travel()
+			# still needs ENABLED even though nothing sets advance_condition.
+			transition.advance_mode = AnimationNodeStateMachineTransition.ADVANCE_MODE_ENABLED
 			sm.add_transition(from_name, to_name, transition)
 
 	return sm
+
+func _build_ease_curve() -> Curve:
+	var curve := Curve.new()
+	curve.add_point(Vector2(0, 0))
+	curve.add_point(Vector2(1, 1))
+	return curve

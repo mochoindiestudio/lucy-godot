@@ -572,13 +572,19 @@ animation = &"moves/idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gw5pc"]
 animation = &"moves/talking"
 
+[sub_resource type="Curve" id="Curve_ease"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gdky"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e76x8"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i1hkp"]
 states/idle/node = SubResource("AnimationNodeAnimation_fhkxn")
@@ -587,7 +593,7 @@ states/talking/node = SubResource("AnimationNodeAnimation_gw5pc")
 states/talking/position = Vector2(220, 140)
 transitions = ["idle", "talking", SubResource("AnimationNodeStateMachineTransition_6gdky"), "talking", "idle", SubResource("AnimationNodeStateMachineTransition_e76x8")]
 
-[node name="Oscar" type="Node3D" unique_id=1302628500]
+[node name="Oscar" type="Node3D" unique_id=1691322454]
 script = ExtResource("1_3ta6s")
 
 [node name="Model" type="Node3D" parent="." unique_id=1524351625]
@@ -784,10 +790,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_uhlvm")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=1053971607]
 libraries/ = SubResource("AnimationLibrary_xfe6j")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1777467108]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=48831261]
 root_node = NodePath("../Model")
 libraries/moves = SubResource("AnimationLibrary_m0y74")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=603951273]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1520620775]
 tree_root = SubResource("AnimationNodeStateMachine_i1hkp")
 anim_player = NodePath("../AnimationPlayer")

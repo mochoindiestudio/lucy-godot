@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://characters/npcs/bella.tscn" id="14_bella"]
 [ext_resource type="PackedScene" path="res://characters/npcs/giorgio.tscn" id="15_giorgio"]
 [ext_resource type="PackedScene" path="res://characters/npcs/lucca.tscn" id="16_lucca"]
+[ext_resource type="Script" uid="uid://0yk40pk1fmiv" path="res://char_test.gd" id="17_char_test"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 
@@ -15,7 +16,8 @@
 sky_material = SubResource("ProceduralSkyMaterial_1")
 
 [sub_resource type="Environment" id="Environment_1"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.027342716, 0.05563192, 0.108277075, 1)
 sky = SubResource("Sky_1")
 ambient_light_source = 3
 ambient_light_sky_contribution = 0.7
@@ -26,13 +28,19 @@ size = Vector2(20, 5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
 albedo_color = Color(0.55, 0.55, 0.58, 1)
 
-[node name="Game" type="Node3D" unique_id=1536844602]
+[sub_resource type="SystemFont" id="SystemFont_name_bold"]
+font_names = PackedStringArray("Arial", "Helvetica", "sans-serif")
+font_weight = 700
+
+[node name="CharTest" type="Node3D" unique_id=1536844602]
+script = ExtResource("17_char_test")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=109815637]
 environment = SubResource("Environment_1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=109326605]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, -0.7071068, 0, 0.7071068, 0.7071068, 0, 4, 4)
+visible = false
 shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=2038820254]
@@ -43,6 +51,18 @@ surface_material_override/0 = SubResource("StandardMaterial3D_floor")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1447338760]
 transform = Transform3D(-0.99738073, 0.0049880566, -0.07215833, 0, 0.9976193, 0.06896197, 0.07233052, 0.068781346, -0.9950062, 8.540723, 1.6002612, -6.994939)
 current = true
+
+[node name="SpotLightWarm" type="SpotLight3D" parent="." unique_id=847213601]
+light_color = Color(1, 0.75, 0.35, 1)
+light_energy = 0.0
+spot_range = 6.0
+spot_angle = 28.0
+
+[node name="SpotLightCool" type="SpotLight3D" parent="." unique_id=847213602]
+light_color = Color(0.4, 0.7, 1, 1)
+light_energy = 0.0
+spot_range = 6.0
+spot_angle = 28.0
 
 [node name="Lucy" parent="." unique_id=1766902884 instance=ExtResource("9_lucy")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.8, 0, 0)
@@ -77,6 +97,20 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("8_ui")
 
+[node name="CharacterName" type="Label" parent="UI/AnimationShowcaseUI" unique_id=1682951693]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 140.0
+offset_bottom = 204.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = SubResource("SystemFont_name_bold")
+theme_override_font_sizes/font_size = 56
+horizontal_alignment = 1
+
 [node name="Buttons" type="HBoxContainer" parent="UI/AnimationShowcaseUI" unique_id=1682951694]
 unique_name_in_owner = true
 layout_mode = 1
@@ -90,23 +124,3 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 16
 alignment = 1
-
-[node name="Idle" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=769149532]
-layout_mode = 2
-text = "Idle"
-
-[node name="Walking" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=1436753688]
-layout_mode = 2
-text = "Walking"
-
-[node name="SlowRun" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=1519926726]
-layout_mode = 2
-text = "Slow Run"
-
-[node name="Talking1" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=889257783]
-layout_mode = 2
-text = "Talking 1"
-
-[node name="Talking2" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=695292507]
-layout_mode = 2
-text = "Talking 2"

@@ -725,29 +725,39 @@ animation = &"moves/idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i2u1k"]
 animation = &"moves/talking"
 
+[sub_resource type="Curve" id="Curve_ease"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl5w0"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yp8ug"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wrhdw"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2kw4"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odcvi"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jlt1o"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wjxgn"]
 states/bubbles/node = SubResource("AnimationNodeAnimation_70elf")
@@ -758,7 +768,7 @@ states/talking/node = SubResource("AnimationNodeAnimation_i2u1k")
 states/talking/position = Vector2(220, 140)
 transitions = ["idle", "talking", SubResource("AnimationNodeStateMachineTransition_wl5w0"), "idle", "bubbles", SubResource("AnimationNodeStateMachineTransition_yp8ug"), "talking", "idle", SubResource("AnimationNodeStateMachineTransition_wrhdw"), "talking", "bubbles", SubResource("AnimationNodeStateMachineTransition_h2kw4"), "bubbles", "idle", SubResource("AnimationNodeStateMachineTransition_odcvi"), "bubbles", "talking", SubResource("AnimationNodeStateMachineTransition_jlt1o")]
 
-[node name="Giorgio" type="Node3D" unique_id=551733289]
+[node name="Giorgio" type="Node3D" unique_id=1667520305]
 script = ExtResource("1_xg6ny")
 
 [node name="Model" type="Node3D" parent="." unique_id=1057835032]
@@ -955,10 +965,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dx1bk")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=852730278]
 libraries/ = SubResource("AnimationLibrary_574wa")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1012126942]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=456617084]
 root_node = NodePath("../Model")
 libraries/moves = SubResource("AnimationLibrary_7n782")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1653510197]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1149110493]
 tree_root = SubResource("AnimationNodeStateMachine_wjxgn")
 anim_player = NodePath("../AnimationPlayer")

@@ -728,29 +728,39 @@ animation = &"moves/idle_alt"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pm2px"]
 animation = &"moves/talking"
 
+[sub_resource type="Curve" id="Curve_ease"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a6qou"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dwiyg"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wmt8e"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exnns"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vrmno"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aq2e4"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ho1kc"]
 states/idle/node = SubResource("AnimationNodeAnimation_00tqk")
@@ -761,7 +771,7 @@ states/talking/node = SubResource("AnimationNodeAnimation_pm2px")
 states/talking/position = Vector2(440, 0)
 transitions = ["idle", "idle_alt", SubResource("AnimationNodeStateMachineTransition_a6qou"), "idle", "talking", SubResource("AnimationNodeStateMachineTransition_dwiyg"), "idle_alt", "idle", SubResource("AnimationNodeStateMachineTransition_wmt8e"), "idle_alt", "talking", SubResource("AnimationNodeStateMachineTransition_exnns"), "talking", "idle", SubResource("AnimationNodeStateMachineTransition_vrmno"), "talking", "idle_alt", SubResource("AnimationNodeStateMachineTransition_aq2e4")]
 
-[node name="Mia" type="Node3D" unique_id=2071197373]
+[node name="Mia" type="Node3D" unique_id=2101109304]
 script = ExtResource("1_mm1iy")
 
 [node name="Model" type="Node3D" parent="." unique_id=1373867142]
@@ -958,10 +968,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_l5a3o")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=1934246476]
 libraries/ = SubResource("AnimationLibrary_xoyvf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=916806706]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2117039934]
 root_node = NodePath("../Model")
 libraries/moves = SubResource("AnimationLibrary_ssnyw")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1615569963]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=553475784]
 tree_root = SubResource("AnimationNodeStateMachine_ho1kc")
 anim_player = NodePath("../AnimationPlayer")

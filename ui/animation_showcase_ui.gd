@@ -1,18 +1,22 @@
 extends Control
 
-## Order must match the Buttons container's child order.
-const STATE_NAMES := ["idle", "walking", "slow_run", "talking_1", "talking_2"]
-
 @onready var _buttons: Control = %Buttons
+@onready var _character_name: Label = %CharacterName
 
-func _ready() -> void:
-	var children := _buttons.get_children()
-	for i in children.size():
-		if i >= STATE_NAMES.size():
-			break
-		var button: Button = children[i]
-		button.pressed.connect(_on_state_button_pressed.bind(STATE_NAMES[i]))
+## Rebuilds the button row and name label for the given character.
+func show_character(character: Node3D) -> void:
+	_character_name.text = character.name
 
-func _on_state_button_pressed(state_name: String) -> void:
-	for character in get_tree().get_nodes_in_group("character_anim_trees"):
-		character.play_state(state_name)
+	for child in _buttons.get_children():
+		child.queue_free()
+
+	for state_name in character.get_state_names():
+		var button := Button.new()
+		button.text = state_name.capitalize()
+		button.focus_mode = Control.FOCUS_NONE
+		button.pressed.connect(character.play_state.bind(state_name))
+		_buttons.add_child(button)
+
+## Fades the name label to the given alpha over duration seconds.
+func fade_name(target_alpha: float, duration: float) -> void:
+	create_tween().tween_property(_character_name, "modulate:a", target_alpha, duration)

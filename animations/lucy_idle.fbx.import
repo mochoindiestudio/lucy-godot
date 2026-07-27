@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://3uoenvgqueat"
-path="res://.godot/imported/talking_2.fbx-96e8154a2c3187ac8836acbbda9d8e1c.scn"
+uid="uid://d12peq2xnri1q"
+path="res://.godot/imported/lucy_idle.fbx-51ddd1032dabfb2000dfeedadf167dc4.scn"
 
 [deps]
 
-source_file="res://animations/talking_2.fbx"
-dest_files=["res://.godot/imported/talking_2.fbx-96e8154a2c3187ac8836acbbda9d8e1c.scn"]
+source_file="res://animations/lucy_idle.fbx"
+dest_files=["res://.godot/imported/lucy_idle.fbx-51ddd1032dabfb2000dfeedadf167dc4.scn"]
 
 [params]
 

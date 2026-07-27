@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cb8h1xrbl2did"
-path="res://.godot/imported/lucy.fbx-0029d58cfc5eea7b021adaa06655577d.scn"
+uid="uid://dc0ipnrqmatvx"
+path="res://.godot/imported/lucy_running.fbx-41d6eee3152d7f6668a0d03ec816c929.scn"
 
 [deps]
 
-source_file="res://models/lucy.fbx"
-dest_files=["res://.godot/imported/lucy.fbx-0029d58cfc5eea7b021adaa06655577d.scn"]
+source_file="res://animations/lucy_running.fbx"
+dest_files=["res://.godot/imported/lucy_running.fbx-41d6eee3152d7f6668a0d03ec816c929.scn"]
 
 [params]
 

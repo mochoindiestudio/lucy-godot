@@ -764,29 +764,39 @@ animation = &"moves/running"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxotp"]
 animation = &"moves/walking"
 
+[sub_resource type="Curve" id="Curve_ease"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6g08"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpbmb"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ntu8"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26ils"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xm5l"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s5xa1"]
 xfade_time = 0.35
-advance_mode = 0
+xfade_curve = SubResource("Curve_ease")
+advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7m46j"]
 states/idle/node = SubResource("AnimationNodeAnimation_hcahq")
@@ -797,7 +807,7 @@ states/walking/node = SubResource("AnimationNodeAnimation_lxotp")
 states/walking/position = Vector2(220, 140)
 transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_u6g08"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_wpbmb"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_1ntu8"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_26ils"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_3xm5l"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_s5xa1")]
 
-[node name="Lucca" type="Node3D" unique_id=1566100287]
+[node name="Lucca" type="Node3D" unique_id=527477969]
 script = ExtResource("1_rmc52")
 
 [node name="Model" type="Node3D" parent="." unique_id=768062042]
@@ -1000,10 +1010,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p5acr")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=912793864]
 libraries/ = SubResource("AnimationLibrary_sauc0")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=349325625]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=804494277]
 root_node = NodePath("../Model")
 libraries/moves = SubResource("AnimationLibrary_l47dy")
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=546944744]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=880856127]
 tree_root = SubResource("AnimationNodeStateMachine_7m46j")
 anim_player = NodePath("../AnimationPlayer")
