@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Lucy A luz do Amor"
+run/main_scene="res://game.tscn"
+config/features=PackedStringArray("4.7", "Forward Plus")
+
+[autoload]
+
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="Lucy A luz do Amor"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/rubonnek.achievements_manager/plugin.cfg", "res://addons/rubonnek.inventory_manager/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"

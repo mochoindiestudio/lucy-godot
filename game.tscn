@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://c0dbsu2ha5l3e"]
+
+[ext_resource type="PackedScene" path="res://characters/lucy.tscn" id="1_lucy"]
+[ext_resource type="PackedScene" path="res://characters/npcs/bella.tscn" id="2_bella"]
+[ext_resource type="PackedScene" path="res://characters/npcs/giorgio.tscn" id="3_giorgio"]
+[ext_resource type="PackedScene" path="res://characters/npcs/mario.tscn" id="4_mario"]
+[ext_resource type="PackedScene" path="res://characters/npcs/mia.tscn" id="5_mia"]
+[ext_resource type="PackedScene" path="res://characters/npcs/oscar.tscn" id="6_oscar"]
+[ext_resource type="PackedScene" path="res://characters/npcs/spark.tscn" id="7_spark"]
+[ext_resource type="Script" uid="uid://bjgoo8myv6aqc" path="res://ui/animation_showcase_ui.gd" id="8_ui"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.7
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+size = Vector2(14, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.55, 0.55, 0.58, 1)
+
+[node name="Game" type="Node3D" unique_id=1536844602]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=109815637]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=109326605]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, -0.7071068, 0, 0.7071068, 0.7071068, 0, 4, 4)
+shadow_enabled = true
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=2038820254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 0, 0)
+mesh = SubResource("PlaneMesh_floor")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1447338760]
+transform = Transform3D(1, 0, 0, 0, 0.99026805, -0.1391731, 0, 0.1391731, 0.99026805, 4.8, 2.1, 9)
+current = true
+
+[node name="Characters" type="Node3D" parent="." unique_id=427439664]
+
+[node name="Lucy" parent="Characters" unique_id=751082026 instance=ExtResource("1_lucy")]
+
+[node name="Bella" parent="Characters" unique_id=745907651 instance=ExtResource("2_bella")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0, 0)
+start_offset = 0.6
+
+[node name="Giorgio" parent="Characters" unique_id=1850726772 instance=ExtResource("3_giorgio")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 0, 0)
+start_offset = 1.2
+
+[node name="Mario" parent="Characters" unique_id=1244766789 instance=ExtResource("4_mario")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8, 0, 0)
+start_offset = 1.8
+
+[node name="Mia" parent="Characters" unique_id=738901551 instance=ExtResource("5_mia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4, 0, 0)
+start_offset = 2.4
+
+[node name="Oscar" parent="Characters" unique_id=2004036341 instance=ExtResource("6_oscar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+start_offset = 3.0
+
+[node name="Spark" parent="Characters" unique_id=1201930197 instance=ExtResource("7_spark")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.6, 0, 0)
+start_offset = 3.6
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=557462075]
+
+[node name="AnimationShowcaseUI" type="Control" parent="UI" unique_id=260682377]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_ui")
+
+[node name="Buttons" type="HBoxContainer" parent="UI/AnimationShowcaseUI" unique_id=1682951694]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Idle" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=769149532]
+layout_mode = 2
+text = "Idle"
+
+[node name="Walking" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=1436753688]
+layout_mode = 2
+text = "Walking"
+
+[node name="SlowRun" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=1519926726]
+layout_mode = 2
+text = "Slow Run"
+
+[node name="Talking1" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=889257783]
+layout_mode = 2
+text = "Talking 1"
+
+[node name="Talking2" type="Button" parent="UI/AnimationShowcaseUI/Buttons" unique_id=695292507]
+layout_mode = 2
+text = "Talking 2"

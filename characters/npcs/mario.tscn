@@ -1,0 +1,126 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://characters/character_preview.gd" id="1_msym3"]
+[ext_resource type="PackedScene" path="res://models/npcs/mario.fbx" id="2_hky8g"]
+[ext_resource type="AnimationLibrary" path="res://animations/library/character_moves.tres" id="3_6bys1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fifwy"]
+animation = &"moves/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h3hpu"]
+animation = &"moves/slow_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ch1gb"]
+animation = &"moves/talking_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a4ieq"]
+animation = &"moves/talking_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcvjd"]
+animation = &"moves/walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j3gwp"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1mdc"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tml2g"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5x2o"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oolo5"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_asagd"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qrryh"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i4g5"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iu552"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hurty"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bs3ox"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jmpde"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_def53"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_clf1q"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lnwg2"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3orq"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjj72"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pru7r"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7rk8f"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xgj6r"]
+xfade_time = 0.35
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o26hx"]
+states/idle/node = SubResource("AnimationNodeAnimation_fifwy")
+states/idle/position = Vector2(0, 0)
+states/slow_run/node = SubResource("AnimationNodeAnimation_h3hpu")
+states/slow_run/position = Vector2(440, 0)
+states/talking_1/node = SubResource("AnimationNodeAnimation_ch1gb")
+states/talking_1/position = Vector2(660, 140)
+states/talking_2/node = SubResource("AnimationNodeAnimation_a4ieq")
+states/talking_2/position = Vector2(880, 0)
+states/walking/node = SubResource("AnimationNodeAnimation_hcvjd")
+states/walking/position = Vector2(220, 140)
+transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_j3gwp"), "idle", "slow_run", SubResource("AnimationNodeStateMachineTransition_q1mdc"), "idle", "talking_1", SubResource("AnimationNodeStateMachineTransition_tml2g"), "idle", "talking_2", SubResource("AnimationNodeStateMachineTransition_h5x2o"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_oolo5"), "walking", "slow_run", SubResource("AnimationNodeStateMachineTransition_asagd"), "walking", "talking_1", SubResource("AnimationNodeStateMachineTransition_qrryh"), "walking", "talking_2", SubResource("AnimationNodeStateMachineTransition_8i4g5"), "slow_run", "idle", SubResource("AnimationNodeStateMachineTransition_iu552"), "slow_run", "walking", SubResource("AnimationNodeStateMachineTransition_hurty"), "slow_run", "talking_1", SubResource("AnimationNodeStateMachineTransition_bs3ox"), "slow_run", "talking_2", SubResource("AnimationNodeStateMachineTransition_jmpde"), "talking_1", "idle", SubResource("AnimationNodeStateMachineTransition_def53"), "talking_1", "walking", SubResource("AnimationNodeStateMachineTransition_clf1q"), "talking_1", "slow_run", SubResource("AnimationNodeStateMachineTransition_lnwg2"), "talking_1", "talking_2", SubResource("AnimationNodeStateMachineTransition_w3orq"), "talking_2", "idle", SubResource("AnimationNodeStateMachineTransition_fjj72"), "talking_2", "walking", SubResource("AnimationNodeStateMachineTransition_pru7r"), "talking_2", "slow_run", SubResource("AnimationNodeStateMachineTransition_7rk8f"), "talking_2", "talking_1", SubResource("AnimationNodeStateMachineTransition_xgj6r")]
+
+[node name="Mario" type="Node3D" unique_id=808215303]
+script = ExtResource("1_msym3")
+
+[node name="Model" type="Node3D" parent="." unique_id=1785068922 instance=ExtResource("2_hky8g")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1171558092]
+root_node = NodePath("../Model")
+libraries/moves = ExtResource("3_6bys1")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1032626000]
+tree_root = SubResource("AnimationNodeStateMachine_o26hx")
+anim_player = NodePath("../AnimationPlayer")
