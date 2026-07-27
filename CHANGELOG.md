@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2026-07-27
+
+### Added
+- Subtle hand-held camera shake in `char_test.gd`: smooth per-axis noise-driven position/rotation sway layered on top of the focus camera, with Inspector-exposed knobs (`shake_enabled`, `shake_position_amount`, `shake_rotation_amount`, `shake_speed`) to fine-tune it.
+
 ## [0.2.0] - 2026-07-27
 
 ### Added

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0dbsu2ha5l3e"]
 
 [ext_resource type="Script" uid="uid://bjgoo8myv6aqc" path="res://ui/animation_showcase_ui.gd" id="8_ui"]
-[ext_resource type="PackedScene" path="res://characters/lucy.tscn" id="9_lucy"]
+[ext_resource type="PackedScene" uid="uid://fumm5tfovwp7" path="res://characters/lucy.tscn" id="9_lucy"]
 [ext_resource type="PackedScene" path="res://characters/npcs/mario.tscn" id="11_mario"]
 [ext_resource type="PackedScene" path="res://characters/npcs/mia.tscn" id="12_mia"]
 [ext_resource type="PackedScene" path="res://characters/npcs/oscar.tscn" id="13_oscar"]
@@ -31,6 +31,7 @@ albedo_color = Color(0.55, 0.55, 0.58, 1)
 [sub_resource type="SystemFont" id="SystemFont_name_bold"]
 font_names = PackedStringArray("Arial", "Helvetica", "sans-serif")
 font_weight = 700
+subpixel_positioning = 0
 
 [node name="CharTest" type="Node3D" unique_id=1536844602]
 script = ExtResource("17_char_test")
@@ -102,8 +103,8 @@ unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 140.0
-offset_bottom = 204.0
+offset_top = 300.0
+offset_bottom = 364.0
 grow_horizontal = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
