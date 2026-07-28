@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.0] - 2026-07-27
+## [0.4.0] - 2026-07-28
+
+### Added
+- Building scale-comparison showcase (`scenes/building_test.tscn`, `scripts/building_test.gd`): houses, profession buildings, a cat statue, wall lamps, and a windmill laid out side by side with Lucy, reusing the character showcase's arrow-key stepping, spotlights, and handheld camera shake.
+- `buildings/windmill.tscn`/`windmill.gd`: a dedicated windmill scene combining the static tower with a separately rotating rotor, exposing `rotation_speed_deg` as an Inspector variable.
+- Per-item preview scenes under `buildings/` (`tools/build_building_scenes.gd`, `tools/build_windmill_scene.gd`), each resting its model's own bounding box on the floor instead of the source FBX's off-center pivot.
+- Scale-aware camera and lighting: the showcase camera now derives its distance, height, and framing from each focused item's actual measured world-space bounds (accounting for skinned-mesh rigs and a light's range-based AABB as special cases) instead of one fixed shot, and the cross-lighting rig's offsets and spot range scale the same way. Items are also sorted by X position at runtime rather than by scene child order, so the lineup steps correctly even after being repositioned in the editor.
+
+### Changed
+- Moved `char_test.gd`/`char_test.tscn` into `scripts/`/`scenes/` and updated `project.godot`'s main scene path to match.
 
 ### Added
 - Subtle hand-held camera shake in `char_test.gd`: smooth per-axis noise-driven position/rotation sway layered on top of the focus camera, with Inspector-exposed knobs (`shake_enabled`, `shake_position_amount`, `shake_rotation_amount`, `shake_speed`) to fine-tune it.
