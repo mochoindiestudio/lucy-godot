@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://vo56wwi348l7"]
+
+[ext_resource type="Script" uid="uid://bcblpmplainph" path="res://buildings/windmill.gd" id="1_2qpdb"]
+[ext_resource type="PackedScene" uid="uid://bdwx31tbwn24a" path="res://models/buildings/windmill_base.fbx" id="2_i5i4f"]
+[ext_resource type="PackedScene" uid="uid://t14jhkn6px8g" path="res://models/buildings/windmill_rotor.glb" id="3_oitkk"]
+[ext_resource type="Material" uid="uid://d0hyi5n6ng25w" path="res://demo/assets/materials/M_rock23_black_tp.tres" id="4_i5i4f"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sbqex"]
+top_radius = 0.009765625
+bottom_radius = 0.009765625
+height = 0.08728027
+
+[node name="Windmill" type="Node3D" unique_id=2105207787]
+script = ExtResource("1_2qpdb")
+
+[node name="Model" parent="." unique_id=989540111 instance=ExtResource("2_i5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="RotorPivot" type="Node3D" parent="." unique_id=213997038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038027167, 0.6174079, 0.23824573)
+
+[node name="Model" parent="RotorPivot" unique_id=1611021114 instance=ExtResource("3_oitkk")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1776795288]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.003734678, 0.61601526, 0.15671381)
+material_override = ExtResource("4_i5i4f")
+mesh = SubResource("CylinderMesh_sbqex")

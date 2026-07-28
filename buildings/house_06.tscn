@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://models/buildings/house_06.fbx" id="1_26bqi"]
+
+[node name="House 06" type="Node3D" unique_id=691441061]
+
+[node name="Model" type="Node3D" parent="." unique_id=1409245397 instance=ExtResource("1_26bqi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455078, 0)

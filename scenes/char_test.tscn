@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://c0dbsu2ha5l3e"]
 
-[ext_resource type="Script" uid="uid://bjgoo8myv6aqc" path="res://ui/animation_showcase_ui.gd" id="8_ui"]
-[ext_resource type="PackedScene" uid="uid://fumm5tfovwp7" path="res://characters/lucy.tscn" id="9_lucy"]
-[ext_resource type="PackedScene" path="res://characters/npcs/mario.tscn" id="11_mario"]
-[ext_resource type="PackedScene" path="res://characters/npcs/mia.tscn" id="12_mia"]
-[ext_resource type="PackedScene" path="res://characters/npcs/oscar.tscn" id="13_oscar"]
-[ext_resource type="PackedScene" path="res://characters/npcs/bella.tscn" id="14_bella"]
-[ext_resource type="PackedScene" path="res://characters/npcs/giorgio.tscn" id="15_giorgio"]
-[ext_resource type="PackedScene" path="res://characters/npcs/lucca.tscn" id="16_lucca"]
-[ext_resource type="Script" uid="uid://0yk40pk1fmiv" path="res://char_test.gd" id="17_char_test"]
+[ext_resource type="Script" uid="uid://0yk40pk1fmiv" path="res://scripts/char_test.gd" id="1_yf55v"]
+[ext_resource type="PackedScene" uid="uid://fumm5tfovwp7" path="res://characters/lucy.tscn" id="2_w6crj"]
+[ext_resource type="PackedScene" path="res://characters/npcs/mario.tscn" id="3_kfonb"]
+[ext_resource type="PackedScene" path="res://characters/npcs/mia.tscn" id="4_ss4yp"]
+[ext_resource type="PackedScene" path="res://characters/npcs/oscar.tscn" id="5_x2k3l"]
+[ext_resource type="PackedScene" path="res://characters/npcs/bella.tscn" id="6_ss1d3"]
+[ext_resource type="PackedScene" path="res://characters/npcs/giorgio.tscn" id="7_6mrk8"]
+[ext_resource type="PackedScene" path="res://characters/npcs/lucca.tscn" id="8_ifg52"]
+[ext_resource type="Script" uid="uid://bjgoo8myv6aqc" path="res://ui/animation_showcase_ui.gd" id="9_di6cr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 
@@ -34,15 +34,10 @@ font_weight = 700
 subpixel_positioning = 0
 
 [node name="CharTest" type="Node3D" unique_id=1536844602]
-script = ExtResource("17_char_test")
+script = ExtResource("1_yf55v")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=109815637]
 environment = SubResource("Environment_1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=109326605]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, -0.7071068, 0, 0.7071068, 0.7071068, 0, 4, 4)
-visible = false
-shadow_enabled = true
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=2038820254]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8, 0, 0)
@@ -56,34 +51,36 @@ current = true
 [node name="SpotLightWarm" type="SpotLight3D" parent="." unique_id=847213601]
 light_color = Color(1, 0.75, 0.35, 1)
 light_energy = 0.0
+shadow_enabled = true
 spot_range = 6.0
 spot_angle = 28.0
 
 [node name="SpotLightCool" type="SpotLight3D" parent="." unique_id=847213602]
 light_color = Color(0.4, 0.7, 1, 1)
 light_energy = 0.0
+shadow_enabled = true
 spot_range = 6.0
 spot_angle = 28.0
 
-[node name="Lucy" parent="." unique_id=1766902884 instance=ExtResource("9_lucy")]
+[node name="Lucy" parent="." unique_id=1766902884 instance=ExtResource("2_w6crj")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 3.8, 0, 0)
 
-[node name="Mario" parent="." unique_id=1075550821 instance=ExtResource("11_mario")]
+[node name="Mario" parent="." unique_id=1075550821 instance=ExtResource("3_kfonb")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 5.8, 0, 0)
 
-[node name="Mia" parent="." unique_id=52579107 instance=ExtResource("12_mia")]
+[node name="Mia" parent="." unique_id=52579107 instance=ExtResource("4_ss4yp")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 7.8, 0, 0)
 
-[node name="Oscar" parent="." unique_id=2100445186 instance=ExtResource("13_oscar")]
+[node name="Oscar" parent="." unique_id=2100445186 instance=ExtResource("5_x2k3l")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 9.8, 0, 0)
 
-[node name="Bella" parent="." unique_id=591925103 instance=ExtResource("14_bella")]
+[node name="Bella" parent="." unique_id=591925103 instance=ExtResource("6_ss1d3")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 11.8, 0, 0)
 
-[node name="Giorgio" parent="." unique_id=744960058 instance=ExtResource("15_giorgio")]
+[node name="Giorgio" parent="." unique_id=744960058 instance=ExtResource("7_6mrk8")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 13.8, 0, 0)
 
-[node name="Lucca" parent="." unique_id=656869247 instance=ExtResource("16_lucca")]
+[node name="Lucca" parent="." unique_id=656869247 instance=ExtResource("8_ifg52")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 15.8, 0, 0)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=557462075]
@@ -96,7 +93,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("8_ui")
+script = ExtResource("9_di6cr")
 
 [node name="CharacterName" type="Label" parent="UI/AnimationShowcaseUI" unique_id=1682951693]
 unique_name_in_owner = true

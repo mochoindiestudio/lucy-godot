@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://sa2ucy05cjqr"]
+
+[ext_resource type="PackedScene" uid="uid://lbrbjuwpf8o7" path="res://models/buildings/wall_lamp_2.fbx" id="1_5nsri"]
+
+[node name="Wall Lamp 2" type="Node3D" unique_id=1246192810]
+
+[node name="Model" parent="." unique_id=564602706 instance=ExtResource("1_5nsri")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1491547096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14596683, -0.22140767, 0.21032032)
+light_color = Color(1, 0.8666667, 0.56078434, 1)
+omni_range = 25.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1832309978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14657757, -0.22140767, 0.21032032)
+light_color = Color(1, 0.8666667, 0.56078434, 1)
+omni_range = 25.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=1703964834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003550142, -0.22140767, 0.34438118)
+light_color = Color(1, 0.8666667, 0.56078434, 1)
+omni_range = 25.0
