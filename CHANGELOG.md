@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.1] - 2026-08-03
+
+### Changed
+- Cleared the `Terrain3D` node's asset library in `scenes/game.scn` (8 ground textures, 116 foliage mesh assets), leaving the terrain node and its heightmap/region data intact as a blank slate for revamping.
+
 ## [0.4.0] - 2026-07-28
 
 ### Added
