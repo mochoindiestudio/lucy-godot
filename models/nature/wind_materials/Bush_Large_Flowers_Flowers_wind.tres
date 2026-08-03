@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cq2v864lw6lon"]
+
+[ext_resource type="Shader" uid="uid://8qgka1435gry" path="res://models/nature/wind_materials/instance_wind.gdshader" id="1_axpag"]
+[ext_resource type="Texture2D" uid="uid://clkowj302jbki" path="res://models/nature/Flowers.png" id="2_bv3ml"]
+[ext_resource type="Texture2D" uid="uid://sly33cy7fmgc" path="res://models/nature/wind_materials/T_wind_noise.tres" id="3_0g8xh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_axpag")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_bv3ml")
+shader_parameter/roughness = 1.0
+shader_parameter/alpha_scissor_enabled = true
+shader_parameter/alpha_scissor_threshold = 0.2
+shader_parameter/normal_enabled = false
+shader_parameter/wind_noise = ExtResource("3_0g8xh")
+shader_parameter/wind_direction = Vector2(1, 1)
+shader_parameter/wind_speed = 0.05
+shader_parameter/wind_noise_scale = 0.1
+shader_parameter/wind_strength = 0.05
+shader_parameter/bend_curve = 8.0

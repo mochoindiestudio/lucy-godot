@@ -39,7 +39,20 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Bark_NormalTree": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/nature/wind_materials/CherryBlossom_2_Bark_NormalTree_wind.tres",
+"use_external/path": "uid://dg5sl1g1ljvhd"
+},
+"Leaves_CherryBlossom": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/nature/wind_materials/CherryBlossom_2_Leaves_CherryBlossom_wind.tres",
+"use_external/path": "uid://devuthttvdgb3"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

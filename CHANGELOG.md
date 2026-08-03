@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.2] - 2026-08-03
+
+### Fixed
+- Wind materials under `models/nature/wind_materials/` (copied in from another project) referenced a shader, a wind-noise texture, and 18 albedo/normal textures at paths and UIDs that didn't exist in this project (`res://addons/terrain_3d/extras/shaders/...`, `res://demo2/assets/models/...`). Repointed all 132 material files at their real locations under `models/nature/`, and copied the missing `T_wind_noise.tres` in from the source project.
+- None of the 115 nature mesh `.gltf.import` files had a material override configured, so the wind materials were never actually applied to any mesh despite existing. Wired up `use_external` overrides for the 79 meshes that have a matching wind material (trees, bushes, flowers, grass, plants); rocks/pebbles/mushrooms/dead-tree bark are intentionally left on their plain materials. `CommonTree_1` had no dedicated wind material of its own, so it reuses `CommonTree_2`'s (same material names/textures).
+
+### Changed
+- Updated `scenes/game.scn`'s terrain to use the new nature meshes/wind materials.
+- Removed the old placeholder ground textures (`grass_packed_*`, `gravel_packed_*`, `moss_packed_*`, `mossy_pavement_packed_*`, `paving_stones_packed_*`, `rock_packed_*`, `rocks_packed_*`, `sand_packed_*`) from `textures/`, superseded by the nature-based terrain materials.
+
 ## [0.4.1] - 2026-08-03
 
 ### Changed

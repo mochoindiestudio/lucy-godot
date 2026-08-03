@@ -39,7 +39,20 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Flowers": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/nature/wind_materials/Flower_3_Group_Flowers_wind.tres",
+"use_external/path": "uid://bu3oli72f5gkn"
+},
+"Leaves": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/nature/wind_materials/Flower_3_Group_Leaves_wind.tres",
+"use_external/path": "uid://e40ev13lwewu"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1
