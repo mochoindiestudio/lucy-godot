@@ -19,6 +19,7 @@ config/name="Lucy A luz do Amor"
 config/version="0.4.0"
 run/main_scene="res://scenes/char_test.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
+config/icon="uid://dupeaesxwpbo5"
 
 [autoload]
 
@@ -40,7 +41,7 @@ project/assembly_name="Lucy A luz do Amor"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/rubonnek.achievements_manager/plugin.cfg", "res://addons/rubonnek.inventory_manager/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [physics]
 

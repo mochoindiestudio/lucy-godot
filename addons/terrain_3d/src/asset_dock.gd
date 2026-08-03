@@ -22,6 +22,7 @@ var box: BoxContainer
 var buttons: BoxContainer
 var textures_btn: Button
 var meshes_btn: Button
+var import_pairs_btn: Button
 var asset_container: ScrollContainer
 var confirm_dialog: ConfirmationDialog
 var _confirmed: bool = false
@@ -102,6 +103,14 @@ func initialize(p_plugin: EditorPlugin) -> void:
 
 	meshes_btn.add_theme_font_size_override("font_size", int(16. * EditorInterface.get_editor_scale()))
 	textures_btn.add_theme_font_size_override("font_size", int(16. * EditorInterface.get_editor_scale()))
+
+	import_pairs_btn = Button.new()
+	import_pairs_btn.text = "Import Pairs..."
+	import_pairs_btn.tooltip_text = "Bulk import albedo + normal texture pairs"
+	import_pairs_btn.owner = null
+	import_pairs_btn.visible = current_list == texture_list
+	import_pairs_btn.pressed.connect(_on_import_pairs_pressed)
+	buttons.add_child(import_pairs_btn, true)
 
 	search_box.text_changed.connect(_on_search_text_changed)
 	search_button.pressed.connect(_on_search_button_pressed)
@@ -268,6 +277,7 @@ func _on_textures_pressed() -> void:
 	mesh_list.visible = false
 	textures_btn.set_pressed_no_signal(true)
 	meshes_btn.set_pressed_no_signal(false)
+	import_pairs_btn.visible = true
 	texture_list.update_asset_list()
 	if plugin.is_terrain_valid():
 		EditorInterface.edit_node(plugin.terrain)
@@ -286,6 +296,7 @@ func _on_meshes_pressed() -> void:
 	texture_list.visible = false
 	meshes_btn.set_pressed_no_signal(true)
 	textures_btn.set_pressed_no_signal(false)
+	import_pairs_btn.visible = false
 	mesh_list.update_asset_list()
 	if plugin.is_terrain_valid():
 		EditorInterface.edit_node(plugin.terrain)
@@ -293,9 +304,20 @@ func _on_meshes_pressed() -> void:
 	_updating_list = false
 
 
+func _on_import_pairs_pressed() -> void:
+	if plugin.debug:
+		print("Terrain3DAssetDock: _on_import_pairs_pressed")
+	plugin.select_terrain()
+	var dialog := Terrain3DTexturePairImportDialog.new()
+	dialog.plugin = plugin
+	add_child(dialog)
+	dialog.popup_centered()
+
+
 func _on_tool_changed(p_tool: Terrain3DEditor.Tool, p_operation: Terrain3DEditor.Operation) -> void:
 	if plugin.debug:
 		print("Terrain3DAssetDock: _on_tool_changed: ", p_tool, ", ", p_operation)
+	remove_all_highlights()
 	if p_tool == Terrain3DEditor.INSTANCER:
 		_on_meshes_pressed()
 	elif p_tool in [ Terrain3DEditor.TEXTURE, Terrain3DEditor.COLOR, Terrain3DEditor.ROUGHNESS ]:
@@ -319,6 +341,19 @@ func update_assets() -> void:
 			plugin.terrain.assets.meshes_changed.connect(mesh_list.update_asset_list)
 
 	current_list.update_asset_list()
+
+
+func remove_all_highlights():
+	if not plugin.terrain:
+		return
+	for i: int in texture_list.entries.size():
+		var resource: Terrain3DTextureAsset = texture_list.entries[i].resource
+		if resource and resource.is_highlighted():
+			resource.set_highlighted(false)
+	for i: int in mesh_list.entries.size():
+		var resource: Terrain3DMeshAsset = mesh_list.entries[i].resource
+		if resource and resource.is_highlighted():
+			resource.set_highlighted(false)
 
 
 ## Manage Editor Settings
@@ -392,7 +427,7 @@ class ListContainer extends Container:
 		if type == Terrain3DAssets.TYPE_TEXTURE:
 			var texture_count: int = t.assets.get_texture_count()
 			for i in texture_count:
-				var texture: Terrain3DTextureAsset = t.assets.get_texture(i)
+				var texture: Terrain3DTextureAsset = t.assets.get_texture_asset(i)
 				add_item(texture)
 			if texture_count < Terrain3DAssets.MAX_TEXTURES:
 				add_item()
@@ -420,6 +455,7 @@ class ListContainer extends Container:
 		entry.clicked.connect(clicked_id.bind(entries.size()))
 		entry.inspected.connect(_on_resource_inspected)
 		entry.changed.connect(_on_resource_changed.bind(res_id))
+		entry.changed_multi.connect(_on_resources_added.bind(res_id))
 		entry.type = type
 		add_child(entry, true)
 		entries.push_back(entry)
@@ -432,7 +468,7 @@ class ListContainer extends Container:
 	func _on_resource_hovered(p_id: int):
 		if type == Terrain3DAssets.TYPE_MESH:
 			if plugin.terrain:
-				plugin.terrain.assets.create_mesh_thumbnails(p_id)
+				plugin.terrain.assets.create_mesh_thumbnails(p_id, Vector2i(512, 512), true)
 
 	
 	func set_selected_after_swap(p_type: Terrain3DAssets.AssetType, p_old_id: int, p_new_id: int) -> void:
@@ -445,15 +481,9 @@ class ListContainer extends Container:
 		plugin.select_terrain()
 		if type == Terrain3DAssets.TYPE_TEXTURE and \
 				not plugin.editor.get_tool() in [ Terrain3DEditor.TEXTURE, Terrain3DEditor.COLOR, Terrain3DEditor.ROUGHNESS ]:
-			var paint_btn: Button = plugin.ui.toolbar.get_node_or_null("PaintTexture")
-			if paint_btn:
-				paint_btn.set_pressed(true)
-				plugin.ui._on_tool_changed(Terrain3DEditor.TEXTURE, Terrain3DEditor.REPLACE)
+			plugin.ui.toolbar.change_tool("PaintTexture")
 		elif type == Terrain3DAssets.TYPE_MESH and plugin.editor.get_tool() != Terrain3DEditor.INSTANCER:
-			var instancer_btn: Button = plugin.ui.toolbar.get_node_or_null("InstanceMeshes")
-			if instancer_btn:
-				instancer_btn.set_pressed(true)
-				plugin.ui._on_tool_changed(Terrain3DEditor.INSTANCER, Terrain3DEditor.ADD)
+			plugin.ui.toolbar.change_tool("InstanceMeshes")
 		set_selected_id(p_id)
 
 
@@ -515,15 +545,63 @@ class ListContainer extends Container:
 			await get_tree().process_frame
 
 		if plugin.is_terrain_valid():
+			var method: StringName = &"set_texture_asset" if type == Terrain3DAssets.TYPE_TEXTURE else &"set_mesh_asset"
+			var old_resource: Resource
 			if type == Terrain3DAssets.TYPE_TEXTURE:
-				plugin.terrain.assets.set_texture(p_id, p_resource)
+				if p_id < plugin.terrain.assets.get_texture_count():
+					old_resource = plugin.terrain.assets.get_texture_asset(p_id)
 			else:
-				plugin.terrain.assets.set_mesh_asset(p_id, p_resource)
+				if p_id < plugin.terrain.assets.get_mesh_count():
+					old_resource = plugin.terrain.assets.get_mesh_asset(p_id)
+
+			if old_resource != p_resource:
+				var noun: String = "Texture" if type == Terrain3DAssets.TYPE_TEXTURE else "Mesh"
+				var action_name: String
+				if not p_resource:
+					action_name = "Remove Terrain3D " + noun
+				elif not old_resource:
+					action_name = "Add Terrain3D " + noun
+				else:
+					action_name = "Change Terrain3D " + noun
+				plugin.create_undo_action(action_name)
+				plugin.add_do_method(Callable(plugin.terrain.assets, method).bind(p_id, p_resource))
+				plugin.add_undo_method(Callable(plugin.terrain.assets, method).bind(p_id, old_resource))
+				plugin.commit_action(true)
 
 			# If removing an entry, clear inspector
 			if not p_resource:
-				EditorInterface.inspect_object(null)			
+				EditorInterface.inspect_object(null)
 		_clearing_resource = false
+
+
+	func _on_resources_added(p_resources: Array, p_start_id: int) -> void:
+		add_assets_bulk(p_resources, p_start_id)
+
+
+	## Adds multiple new assets in a single combined undo/redo action.
+	## p_start_id = -1 appends after the current last asset.
+	func add_assets_bulk(p_resources: Array, p_start_id: int = -1) -> void:
+		if p_resources.is_empty():
+			return
+		if not plugin.is_terrain_valid():
+			plugin.select_terrain()
+			await get_tree().process_frame
+		if not plugin.is_terrain_valid():
+			return
+		var max_count: int = Terrain3DAssets.MAX_MESHES if type == Terrain3DAssets.TYPE_MESH else Terrain3DAssets.MAX_TEXTURES
+		var noun: String = "Mesh" if type == Terrain3DAssets.TYPE_MESH else "Texture"
+		var method: StringName = &"set_mesh_asset" if type == Terrain3DAssets.TYPE_MESH else &"set_texture_asset"
+		var start_id: int = p_start_id
+		if start_id < 0:
+			start_id = plugin.terrain.assets.get_mesh_count() if type == Terrain3DAssets.TYPE_MESH else plugin.terrain.assets.get_texture_count()
+		plugin.create_undo_action("Add Terrain3D %ss" % noun)
+		for i in p_resources.size():
+			var id: int = start_id + i
+			if id >= max_count:
+				break
+			plugin.add_do_method(Callable(plugin.terrain.assets, method).bind(id, p_resources[i]))
+			plugin.add_undo_method(Callable(plugin.terrain.assets, method).bind(id, null))
+		plugin.commit_action(true)
 
 
 	func set_entry_width(value: float) -> void:
@@ -543,6 +621,7 @@ class ListContainer extends Container:
 		var columns: int = 3
 		columns = clamp(size.x / width, 1, 100)
 		var tile_size: Vector2 = Vector2(width, width) - Vector2(separation, separation)
+		var count_font_size := int(clamp(tile_size.x/11., 11., 16.) * EditorInterface.get_editor_scale())
 		var name_font_size := int(clamp(tile_size.x/12., 12., 16.) * EditorInterface.get_editor_scale())
 		for c in get_children():
 			if is_instance_valid(c):
@@ -551,6 +630,8 @@ class ListContainer extends Container:
 					Vector2(separation / columns, separation / columns)
 				height = max(height, c.position.y + width)
 				id += 1
+				if type == Terrain3DAssets.TYPE_MESH:
+					c.count_label.add_theme_font_size_override("font_size", count_font_size)
 				c.name_label.add_theme_font_size_override("font_size", name_font_size)
 
 
@@ -573,6 +654,7 @@ class ListEntry extends MarginContainer:
 	signal hovered()
 	signal clicked()
 	signal changed(resource: Resource)
+	signal changed_multi(resources: Array)
 	signal inspected(resource: Resource)
 	
 	var resource: Resource
@@ -581,10 +663,13 @@ class ListEntry extends MarginContainer:
 	var drop_data: bool = false
 	var is_hovered: bool = false
 	var is_selected: bool = false
+	var is_highlighted: bool = false
 	
 	var name_label: Label
+	var count_label: Label
 	var button_row: FlowContainer
 	var button_enabled: TextureButton
+	var button_highlight: TextureButton
 	var button_edit: TextureButton
 	var spacer: Control 
 	var button_clear: TextureButton
@@ -595,6 +680,7 @@ class ListEntry extends MarginContainer:
 	@onready var edit_icon: Texture2D = get_theme_icon("Edit", "EditorIcons")
 	@onready var enabled_icon: Texture2D = get_theme_icon("GuiVisibilityVisible", "EditorIcons")
 	@onready var disabled_icon: Texture2D = get_theme_icon("GuiVisibilityHidden", "EditorIcons")
+	@onready var highlight_icon: Texture2D = get_theme_icon("PreviewSun", "EditorIcons")
 	@onready var add_icon: Texture2D = get_theme_icon("Add", "EditorIcons")
 
 
@@ -606,8 +692,12 @@ class ListEntry extends MarginContainer:
 		add_theme_constant_override("margin_left", 5)
 		add_theme_constant_override("margin_right", 5)
 
+		if resource:
+			is_highlighted = resource.is_highlighted()
+
 		setup_buttons()
 		setup_label()
+		setup_count_label()
 		focus_style.set_border_width_all(2)
 		focus_style.set_border_color(Color(1, 1, 1, .67))
 
@@ -617,6 +707,7 @@ class ListEntry extends MarginContainer:
 		
 		button_row = FlowContainer.new()
 		button_enabled = TextureButton.new() 
+		button_highlight = TextureButton.new() 
 		button_edit = TextureButton.new() 
 		spacer = Control.new()
 		button_clear = TextureButton.new()
@@ -641,6 +732,18 @@ class ListEntry extends MarginContainer:
 			button_enabled.pressed.connect(_on_enable)
 			button_row.add_child(button_enabled, true)
 			
+		button_highlight.set_texture_normal(highlight_icon)
+		button_highlight.set_custom_minimum_size(icon_size)
+		button_highlight.set_h_size_flags(Control.SIZE_SHRINK_END)
+		button_highlight.set_visible(resource != null)
+		button_highlight.tooltip_text = "Highlight " + ( "Instances" if type == Terrain3DAssets.TYPE_MESH else "Texture" )
+		button_highlight.toggle_mode = true
+		button_highlight.mouse_filter = Control.MOUSE_FILTER_PASS
+		button_highlight.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		button_highlight.set_pressed_no_signal(is_highlighted)
+		button_highlight.pressed.connect(_on_highlight)
+		button_row.add_child(button_highlight, true)
+		
 		button_edit.set_texture_normal(edit_icon)
 		button_edit.set_custom_minimum_size(icon_size)
 		button_edit.set_h_size_flags(Control.SIZE_SHRINK_END)
@@ -673,6 +776,9 @@ class ListEntry extends MarginContainer:
 		if button_enabled:
 			button_enabled.free()
 			button_enabled = null
+		if button_highlight:
+			button_highlight.free()
+			button_highlight = null
 		if button_edit:
 			button_edit.free()
 			button_edit = null
@@ -711,6 +817,39 @@ class ListEntry extends MarginContainer:
 		add_child(name_label, true)
 
 
+	func setup_count_label() -> void:
+		count_label = Label.new()
+		count_label.name = "CountLabel"
+		count_label.text = ""
+		count_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		count_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+		count_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		count_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		count_label.add_theme_font_size_override("font_size", int(14. * EditorInterface.get_editor_scale()))
+		count_label.add_theme_color_override("font_color", Color.WHITE)
+		count_label.add_theme_color_override("font_shadow_color", Color.BLACK)
+		count_label.add_theme_constant_override("shadow_offset_x", 1)
+		count_label.add_theme_constant_override("shadow_offset_y", 1)
+		add_child(count_label, true)
+		var mesh_resource: Terrain3DMeshAsset = resource as Terrain3DMeshAsset
+		if not mesh_resource: 
+			return
+		mesh_resource.instance_count_changed.connect(update_count_label)
+		update_count_label()
+
+
+	func update_count_label() -> void:
+		if not type == Terrain3DAssets.AssetType.TYPE_MESH or \
+				( resource and not resource.is_enabled() ):
+			count_label.text = ""
+			return
+		var mesh_resource: Terrain3DMeshAsset = resource as Terrain3DMeshAsset
+		if not mesh_resource:
+			count_label.text = str(0)
+		else:
+			count_label.text = _format_number(mesh_resource.get_instance_count())
+
+
 	func _notification(p_what) -> void:
 		match p_what:
 			NOTIFICATION_PREDELETE:
@@ -723,19 +862,18 @@ class ListEntry extends MarginContainer:
 					draw_style_box(background, rect)
 					draw_texture(add_icon, (get_size() / 2) - (add_icon.get_size() / 2))
 				else:
-					if type == Terrain3DAssets.TYPE_TEXTURE:
-						_thumbnail = resource.get_albedo_texture()
-					else:
-						_thumbnail = resource.get_thumbnail()
+					_thumbnail = resource.get_thumbnail()
 					if _thumbnail:
 						draw_texture_rect(_thumbnail, rect, false)
 						texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
 					else:
 						draw_rect(rect, Color(.15, .15, .15, 1.))
 					if type == Terrain3DAssets.TYPE_TEXTURE:
-						self_modulate = resource.get_albedo_color()
+						self_modulate = resource.get_highlight_color() if is_highlighted else resource.get_albedo_color()
 					else:
 						button_enabled.set_pressed_no_signal(!resource.is_enabled())
+						self_modulate = resource.get_highlight_color()
+					button_highlight.self_modulate = Color("FC7F7F") if is_highlighted else Color.WHITE
 				if drop_data:
 					draw_style_box(focus_style, rect)
 				if is_hovered:
@@ -784,20 +922,64 @@ class ListEntry extends MarginContainer:
 	func _can_drop_data(p_at_position: Vector2, p_data: Variant) -> bool:
 		drop_data = false
 		if typeof(p_data) == TYPE_DICTIONARY:
-			if p_data.files.size() == 1:
-				queue_redraw()
+			var file_count: int = p_data.files.size()
+			if file_count == 1:
 				drop_data = true
+			elif file_count > 1 and not resource:
+				# Multiple assets can only be dropped on the empty "add new" tile
+				drop_data = true
+			if drop_data:
+				queue_redraw()
 		return drop_data
 
-		
+
 	func _drop_data(p_at_position: Vector2, p_data: Variant) -> void:
 		if typeof(p_data) == TYPE_DICTIONARY:
+			if p_data.files.size() > 1 and not resource:
+				var new_assets: Array = []
+				if type == Terrain3DAssets.TYPE_MESH:
+					for file in p_data.files:
+						var dropped_res: Resource = load(file)
+						if dropped_res is PackedScene:
+							var ma := Terrain3DMeshAsset.new()
+							ma.set_scene_file(dropped_res)
+							new_assets.push_back(ma)
+						elif dropped_res is Terrain3DMeshAsset:
+							new_assets.push_back(dropped_res)
+				else:
+					for file in p_data.files:
+						var dropped_res: Resource = load(file)
+						# Multiple dropped textures are assumed to be albedo maps
+						if dropped_res is Texture2D:
+							var ta := Terrain3DTextureAsset.new()
+							ta.set_albedo_texture(dropped_res)
+							var normal_path: String = Terrain3DTexturePairMatcher.find_normal_sibling(file)
+							if normal_path != "":
+								var normal_res: Resource = load(normal_path)
+								if normal_res is Texture2D:
+									ta.set_normal_texture(normal_res)
+							new_assets.push_back(ta)
+						elif dropped_res is Terrain3DTextureAsset:
+							new_assets.push_back(dropped_res)
+				if new_assets.is_empty():
+					return
+				resource = new_assets[0]
+				set_edited_resource(resource, true)
+				emit_signal("changed_multi", new_assets)
+				emit_signal("clicked")
+				emit_signal("inspected", resource)
+				return
 			var res: Resource = load(p_data.files[0])
 			if res is Texture2D and type == Terrain3DAssets.TYPE_TEXTURE:
 				var ta := Terrain3DTextureAsset.new()
 				if resource is Terrain3DTextureAsset:
 					ta.id = resource.id
 				ta.set_albedo_texture(res)
+				var normal_path: String = Terrain3DTexturePairMatcher.find_normal_sibling(p_data.files[0])
+				if normal_path != "":
+					var normal_res: Resource = load(normal_path)
+					if normal_res is Texture2D:
+						ta.set_normal_texture(normal_res)
 				set_edited_resource(ta, false)
 				resource = ta
 			elif res is Terrain3DTextureAsset and type == Terrain3DAssets.TYPE_TEXTURE:
@@ -859,6 +1041,7 @@ class ListEntry extends MarginContainer:
 		if resource:
 			name_label.hide()
 			set_edited_resource(null, false)
+			update_count_label()
 
 	
 	func _on_edit() -> void:
@@ -869,6 +1052,11 @@ class ListEntry extends MarginContainer:
 	func _on_enable() -> void:
 		if resource is Terrain3DMeshAsset:
 			resource.set_enabled(!resource.is_enabled())
+
+
+	func _on_highlight() -> void:
+		is_highlighted = !is_highlighted
+		resource.set_highlighted(is_highlighted)
 
 
 	func _format_number(num: int) -> String:
