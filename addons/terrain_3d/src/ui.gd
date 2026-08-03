@@ -293,6 +293,7 @@ func _on_setting_changed(p_setting: Variant = null) -> void:
 		return
 	brush_data = tool_settings.get_settings()
 	brush_data["asset_id"] = plugin.asset_dock.current_list.get_selected_asset_id()
+	brush_data["asset_ids"] = plugin.asset_dock.current_list.get_selected_asset_ids()
 	if plugin.debug:
 		print("Terrain3DUI: _on_setting_changed: selected resource ID: ", brush_data["asset_id"])
 	if plugin.editor:

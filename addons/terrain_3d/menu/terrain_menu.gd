@@ -6,12 +6,16 @@ extends HBoxContainer
 const DirectoryWizard: Script = preload("res://addons/terrain_3d/menu/directory_setup.gd")
 const ChannelPacker: Script = preload("res://addons/terrain_3d/menu/channel_packer.gd")
 const LodBaker: Script = preload("res://addons/terrain_3d/menu/baker.gd")
+const VegetationPopulator: Script = preload("res://addons/terrain_3d/menu/vegetation_populator.gd")
+const WindApplier: Script = preload("res://addons/terrain_3d/menu/wind_applier.gd")
 
 var plugin: EditorPlugin
 var menu_button: MenuButton = MenuButton.new()
 var directory_setup: DirectoryWizard = DirectoryWizard.new()
 var packer: ChannelPacker = ChannelPacker.new()
 var baker: LodBaker = LodBaker.new()
+var vegetation_populator: VegetationPopulator = VegetationPopulator.new()
+var wind_applier: WindApplier = WindApplier.new()
 
 # These are IDs and order must be consistent with add_item and set_disabled IDs
 enum {
@@ -24,8 +28,11 @@ enum {
 	MENU_SET_UP_NAVIGATION,
 	MENU_BAKE_NAV_MESH,
 	MENU_SEPARATOR3,
-	MENU_BRUSH_DIRECTORY,
+	MENU_VEGETATION_POPULATOR,
+	MENU_WIND_APPLIER,
 	MENU_SEPARATOR4,
+	MENU_BRUSH_DIRECTORY,
+	MENU_SEPARATOR5,
 	MENU_VIEW_LIVE_INFO_PANEL,
 }
 
@@ -34,12 +41,16 @@ func _enter_tree() -> void:
 	directory_setup.plugin = plugin
 	packer.plugin = plugin
 	baker.plugin = plugin
+	vegetation_populator.plugin = plugin
+	wind_applier.plugin = plugin
 	add_child(directory_setup)
 	add_child(baker)
-	
+	add_child(vegetation_populator)
+	add_child(wind_applier)
+
 	menu_button.text = "Terrain3D"
 	menu_button.get_popup().add_item("Directory Setup...", 	MENU_DIRECTORY_SETUP)
-	menu_button.get_popup().add_item("Pack Textures...", MENU_PACK_TEXTURES)	
+	menu_button.get_popup().add_item("Pack Textures...", MENU_PACK_TEXTURES)
 	menu_button.get_popup().add_separator("", MENU_SEPARATOR)
 	menu_button.get_popup().add_item("Bake ArrayMesh...", MENU_BAKE_ARRAY_MESH)
 	menu_button.get_popup().add_item("Bake Occluder3D...", MENU_BAKE_OCCLUDER)
@@ -47,8 +58,11 @@ func _enter_tree() -> void:
 	menu_button.get_popup().add_item("Set up Navigation...", MENU_SET_UP_NAVIGATION)
 	menu_button.get_popup().add_item("Bake NavMesh...", MENU_BAKE_NAV_MESH)
 	menu_button.get_popup().add_separator("", MENU_SEPARATOR3)
-	menu_button.get_popup().add_item("Open Brush Directory...", MENU_BRUSH_DIRECTORY)
+	menu_button.get_popup().add_item("Auto-Populate Vegetation...", MENU_VEGETATION_POPULATOR)
+	menu_button.get_popup().add_item("Apply Wind to Meshes...", MENU_WIND_APPLIER)
 	menu_button.get_popup().add_separator("", MENU_SEPARATOR4)
+	menu_button.get_popup().add_item("Open Brush Directory...", MENU_BRUSH_DIRECTORY)
+	menu_button.get_popup().add_separator("", MENU_SEPARATOR5)
 	menu_button.get_popup().add_check_item("View LiveInfo Panel", MENU_VIEW_LIVE_INFO_PANEL)
 	
 	menu_button.get_popup().id_pressed.connect(_on_menu_pressed)
@@ -70,6 +84,10 @@ func _on_menu_pressed(p_id: int) -> void:
 			baker.set_up_navigation_popup()
 		MENU_BAKE_NAV_MESH:
 			baker.bake_nav_mesh()
+		MENU_VEGETATION_POPULATOR:
+			vegetation_populator.populate_popup()
+		MENU_WIND_APPLIER:
+			wind_applier.open_popup()
 		MENU_BRUSH_DIRECTORY:
 			OS.shell_show_in_file_manager(ProjectSettings.globalize_path("res://addons/terrain_3d/brushes"))
 		MENU_VIEW_LIVE_INFO_PANEL:
@@ -84,6 +102,7 @@ func _on_menu_about_to_popup() -> void:
 	menu_button.get_popup().set_item_disabled(MENU_PACK_TEXTURES, not plugin.terrain)
 	menu_button.get_popup().set_item_disabled(MENU_BAKE_ARRAY_MESH, not plugin.terrain)
 	menu_button.get_popup().set_item_disabled(MENU_BAKE_OCCLUDER, not plugin.terrain)
+	menu_button.get_popup().set_item_disabled(MENU_VEGETATION_POPULATOR, not plugin.terrain)
 
 	menu_button.get_popup().set_item_disabled(MENU_VIEW_LIVE_INFO_PANEL, not plugin.terrain)
 	menu_button.get_popup().set_item_checked(MENU_VIEW_LIVE_INFO_PANEL, plugin.ui.live_info_panel.enabled)

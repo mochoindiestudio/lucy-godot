@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c7pgg8c1kwgkx"]
+
+[ext_resource type="Shader" uid="uid://dumds33okf8ux" path="res://addons/terrain_3d/extras/shaders/instance_wind.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://bhf50lep2bkhl" path="res://demo2/assets/models/Grass.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://u05cqn0wf7fd" path="res://new_noise_texture_2d.tres" id="3_dcwqv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2")
+shader_parameter/roughness = 1.0
+shader_parameter/alpha_scissor_enabled = true
+shader_parameter/alpha_scissor_threshold = 0.2
+shader_parameter/normal_enabled = false
+shader_parameter/wind_noise = ExtResource("3_dcwqv")
+shader_parameter/wind_direction = Vector2(1, 1)
+shader_parameter/wind_speed = 0.05
+shader_parameter/wind_noise_scale = 0.015
+shader_parameter/wind_strength = 0.04
+shader_parameter/bend_curve = 1.0

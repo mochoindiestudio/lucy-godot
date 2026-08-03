@@ -215,8 +215,7 @@ func _forward_3d_gui_input(p_viewport_camera: Camera3D, p_event: InputEvent) -> 
 			if _input_mode > 0 and editor.is_operating():
 				# Inject pressure - Relies on C++ set_brush_data() using same dictionary instance
 				ui.brush_data["mouse_pressure"] = p_event.pressure
-
-				editor.operate(mouse_global_position, p_viewport_camera.rotation.y)
+				_operate(mouse_global_position, p_viewport_camera.rotation.y)
 				return AFTER_GUI_INPUT_STOP
 			
 		return AFTER_GUI_INPUT_PASS
@@ -250,7 +249,7 @@ func _forward_3d_gui_input(p_viewport_camera: Camera3D, p_event: InputEvent) -> 
 			
 			# Mouse clicked, start editing
 			editor.start_operation(mouse_global_position)
-			editor.operate(mouse_global_position, p_viewport_camera.rotation.y)
+			_operate(mouse_global_position, p_viewport_camera.rotation.y)
 			return AFTER_GUI_INPUT_STOP
 		
 		# _input_apply released, save undo data
@@ -259,6 +258,27 @@ func _forward_3d_gui_input(p_viewport_camera: Camera3D, p_event: InputEvent) -> 
 			return AFTER_GUI_INPUT_STOP
 
 	return AFTER_GUI_INPUT_PASS
+
+
+# Instancer tool with multiple meshes selected in the asset dock:
+# - Placing: pick a fresh random mesh id from the full selection before each
+#   placed stroke, so painting scatters between the selected meshes.
+# - Erasing (Ctrl-drag): erase every selected mesh id in turn, so clearing
+#   removes all of the meshes that were scattered during placement. Shift
+#   already means "erase all mesh types" (Terrain3DInstancer::remove_instances),
+#   so it takes precedence over the per-selection loop.
+func _operate(p_global_position: Vector3, p_camera_rotation: float) -> void:
+	if editor.get_tool() == Terrain3DEditor.INSTANCER:
+		var ids: Array = ui.brush_data.get("asset_ids", [])
+		if modifier_ctrl:
+			if ids.size() > 1 and not modifier_shift:
+				for id in ids:
+					ui.brush_data["asset_id"] = id
+					editor.operate(p_global_position, p_camera_rotation)
+				return
+		elif ids.size() > 1:
+			ui.brush_data["asset_id"] = ids[randi() % ids.size()]
+	editor.operate(p_global_position, p_camera_rotation)
 
 
 func _read_input(p_event: InputEvent = null) -> AfterGUIInput:

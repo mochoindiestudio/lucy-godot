@@ -23,6 +23,7 @@ var buttons: BoxContainer
 var textures_btn: Button
 var meshes_btn: Button
 var import_pairs_btn: Button
+var clear_all_btn: Button
 var asset_container: ScrollContainer
 var confirm_dialog: ConfirmationDialog
 var _confirmed: bool = false
@@ -111,6 +112,13 @@ func initialize(p_plugin: EditorPlugin) -> void:
 	import_pairs_btn.visible = current_list == texture_list
 	import_pairs_btn.pressed.connect(_on_import_pairs_pressed)
 	buttons.add_child(import_pairs_btn, true)
+
+	clear_all_btn = Button.new()
+	clear_all_btn.text = "Clear All"
+	clear_all_btn.owner = null
+	clear_all_btn.pressed.connect(_on_clear_all_pressed)
+	buttons.add_child(clear_all_btn, true)
+	_update_clear_all_tooltip()
 
 	search_box.text_changed.connect(_on_search_text_changed)
 	search_button.pressed.connect(_on_search_button_pressed)
@@ -278,6 +286,7 @@ func _on_textures_pressed() -> void:
 	textures_btn.set_pressed_no_signal(true)
 	meshes_btn.set_pressed_no_signal(false)
 	import_pairs_btn.visible = true
+	_update_clear_all_tooltip()
 	texture_list.update_asset_list()
 	if plugin.is_terrain_valid():
 		EditorInterface.edit_node(plugin.terrain)
@@ -297,6 +306,7 @@ func _on_meshes_pressed() -> void:
 	meshes_btn.set_pressed_no_signal(true)
 	textures_btn.set_pressed_no_signal(false)
 	import_pairs_btn.visible = false
+	_update_clear_all_tooltip()
 	mesh_list.update_asset_list()
 	if plugin.is_terrain_valid():
 		EditorInterface.edit_node(plugin.terrain)
@@ -312,6 +322,31 @@ func _on_import_pairs_pressed() -> void:
 	dialog.plugin = plugin
 	add_child(dialog)
 	dialog.popup_centered()
+
+
+func _update_clear_all_tooltip() -> void:
+	if current_list == mesh_list:
+		clear_all_btn.tooltip_text = "Remove all meshes and delete all instances from the terrain"
+	else:
+		clear_all_btn.tooltip_text = "Remove all textures and clear them from the terrain"
+
+
+func _on_clear_all_pressed() -> void:
+	if plugin.debug:
+		print("Terrain3DAssetDock: _on_clear_all_pressed")
+	if not plugin.is_terrain_valid():
+		return
+	var count: int = current_list.get_asset_count()
+	if count == 0:
+		return
+	if current_list == mesh_list:
+		confirm_dialog.dialog_text = "Are you sure you want to clear all %d meshes and delete all instances?" % count
+	else:
+		confirm_dialog.dialog_text = "Are you sure you want to clear all %d textures?" % count
+	confirm_dialog.popup_centered()
+	await confirmation_closed
+	if _confirmed:
+		current_list.clear_all_assets()
 
 
 func _on_tool_changed(p_tool: Terrain3DEditor.Tool, p_operation: Terrain3DEditor.Operation) -> void:
@@ -391,6 +426,7 @@ class ListContainer extends Container:
 	var type := Terrain3DAssets.TYPE_TEXTURE
 	var entries: Array[ListEntry]
 	var selected_id: int = 0
+	var selected_ids: Array[int] = [] # Mesh tiles only: full multi-paint-selection set
 	var height: float = 0.
 	var width: float = 90.
 	var focus_style: StyleBox
@@ -440,7 +476,7 @@ class ListContainer extends Container:
 				add_item(mesh)
 			if mesh_count < Terrain3DAssets.MAX_MESHES:
 				add_item()
-		set_selected_id(selected_id)
+		_reapply_selection()
 
 
 	func add_item(p_resource: Resource = null) -> void:
@@ -484,7 +520,16 @@ class ListContainer extends Container:
 			plugin.ui.toolbar.change_tool("PaintTexture")
 		elif type == Terrain3DAssets.TYPE_MESH and plugin.editor.get_tool() != Terrain3DEditor.INSTANCER:
 			plugin.ui.toolbar.change_tool("InstanceMeshes")
-		set_selected_id(p_id)
+		if type == Terrain3DAssets.TYPE_MESH and _is_multiselect_modifier_held():
+			toggle_selected_id(p_id)
+		else:
+			set_selected_id(p_id)
+
+
+	func _is_multiselect_modifier_held() -> bool:
+		if plugin._use_meta:
+			return Input.is_key_pressed(KEY_META)
+		return Input.is_key_pressed(KEY_CTRL)
 
 
 	func set_selected_id(p_id: int) -> void:
@@ -493,10 +538,44 @@ class ListContainer extends Container:
 		if plugin.debug:
 			print("Terrain3DListContainer ", name, ": set_selected_id: ", selected_id, " to ", clamp(p_id, 0, max_id))
 		selected_id = clamp(p_id, 0, max_id)
+		selected_ids = [selected_id]
+		_update_selection_visuals()
+		plugin.ui._on_setting_changed()
+
+
+	func toggle_selected_id(p_id: int) -> void:
+		# "Add new" is the final entry only when search box is blank
+		var max_id: int = max(0, entries.size() - (1 if search_text else 2))
+		var id: int = clamp(p_id, 0, max_id)
+		if selected_ids.has(id):
+			if selected_ids.size() > 1:
+				selected_ids.erase(id)
+		else:
+			selected_ids.push_back(id)
+		selected_id = selected_ids[-1]
+		_update_selection_visuals()
+		plugin.ui._on_setting_changed()
+
+
+	func _reapply_selection() -> void:
+		# "Add new" is the final entry only when search box is blank
+		var max_id: int = max(0, entries.size() - (1 if search_text else 2))
+		var kept_ids: Array[int] = []
+		for id: int in selected_ids:
+			if id <= max_id:
+				kept_ids.push_back(id)
+		selected_ids = kept_ids
+		selected_id = clamp(selected_id, 0, max_id)
+		if selected_ids.is_empty():
+			selected_ids = [selected_id]
+		_update_selection_visuals()
+		plugin.ui._on_setting_changed()
+
+
+	func _update_selection_visuals() -> void:
 		for i in entries.size():
 			var entry: ListEntry = entries[i]
-			entry.set_selected(i == selected_id)
-		plugin.ui._on_setting_changed()
+			entry.set_selected(i in selected_ids)
 
 
 	func get_selected_asset_id() -> int:
@@ -514,6 +593,26 @@ class ListContainer extends Container:
 			return (res as Terrain3DMeshAsset).id
 		else:
 			return (res as Terrain3DTextureAsset).id
+
+
+	func get_selected_asset_ids() -> Array[int]:
+		# "Add new" is the final entry only when search box is blank
+		var max_id: int = max(0, entries.size() - (1 if search_text else 2))
+		var ids: Array[int] = []
+		for sel: int in selected_ids:
+			var id: int = clamp(sel, 0, max_id)
+			if id >= entries.size():
+				continue
+			var res: Resource = entries[id].resource
+			if not res:
+				continue
+			if type == Terrain3DAssets.AssetType.TYPE_MESH:
+				ids.push_back((res as Terrain3DMeshAsset).id)
+			else:
+				ids.push_back((res as Terrain3DTextureAsset).id)
+		if ids.is_empty():
+			ids.push_back(get_selected_asset_id())
+		return ids
 
 
 	func _on_resource_inspected(p_resource: Resource) -> void:
@@ -602,6 +701,38 @@ class ListContainer extends Container:
 			plugin.add_do_method(Callable(plugin.terrain.assets, method).bind(id, p_resources[i]))
 			plugin.add_undo_method(Callable(plugin.terrain.assets, method).bind(id, null))
 		plugin.commit_action(true)
+
+
+	func get_asset_count() -> int:
+		if not plugin.is_terrain_valid():
+			return 0
+		if type == Terrain3DAssets.TYPE_MESH:
+			return plugin.terrain.assets.get_mesh_count()
+		else:
+			return plugin.terrain.assets.get_texture_count()
+
+
+	## Removes every asset in this list through the same per-slot API used by
+	## a single "Clear Asset" click, so mesh instances are deleted and the
+	## texture arrays are regenerated, in one combined undo/redo action.
+	func clear_all_assets() -> void:
+		var count: int = get_asset_count()
+		if count == 0:
+			return
+		var noun: String = "Mesh" if type == Terrain3DAssets.TYPE_MESH else "Texture"
+		var method: StringName = &"set_mesh_asset" if type == Terrain3DAssets.TYPE_MESH else &"set_texture_asset"
+		plugin.create_undo_action("Clear All Terrain3D %ss" % noun)
+		for id in range(count - 1, -1, -1):
+			var old_resource: Resource
+			if type == Terrain3DAssets.TYPE_MESH:
+				old_resource = plugin.terrain.assets.get_mesh_asset(id)
+			else:
+				old_resource = plugin.terrain.assets.get_texture_asset(id)
+			plugin.add_do_method(Callable(plugin.terrain.assets, method).bind(id, null))
+			plugin.add_undo_method(Callable(plugin.terrain.assets, method).bind(id, old_resource))
+		plugin.commit_action(true)
+		EditorInterface.inspect_object(null)
+		set_selected_id(0)
 
 
 	func set_entry_width(value: float) -> void:

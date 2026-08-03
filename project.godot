@@ -16,7 +16,7 @@ compatibility/size/initial_screen=0
 [application]
 
 config/name="Lucy A luz do Amor"
-config/version="0.4.3"
+config/version="0.12.4"
 run/main_scene="res://scenes/char_test.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://dupeaesxwpbo5"

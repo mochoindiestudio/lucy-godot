@@ -9,14 +9,20 @@
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1491547096]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14596683, -0.22140767, 0.21032032)
 light_color = Color(1, 0.8666667, 0.56078434, 1)
+shadow_enabled = true
+distance_fade_enabled = true
 omni_range = 25.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1832309978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14657757, -0.22140767, 0.21032032)
 light_color = Color(1, 0.8666667, 0.56078434, 1)
+shadow_enabled = true
+distance_fade_enabled = true
 omni_range = 25.0
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=1703964834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003550142, -0.22140767, 0.34438118)
 light_color = Color(1, 0.8666667, 0.56078434, 1)
+shadow_enabled = true
+distance_fade_enabled = true
 omni_range = 25.0

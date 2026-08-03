@@ -18,7 +18,7 @@ seamless = true
 [resource]
 render_priority = 0
 shader = ExtResource("1_t7ju5")
-shader_parameter/sea_level = 9.0800028063
+shader_parameter/sea_level = 8.000002754999997
 shader_parameter/water_color = Color(0.1058, 0.1568, 0.2117, 1)
 shader_parameter/visible_depth = 256.0
 shader_parameter/depth_curve = 0.1
@@ -49,5 +49,5 @@ shader_parameter/_subdiv = 1.0
 shader_parameter/_vertex_spacing = 4.0
 shader_parameter/_vertex_density = 0.25
 shader_parameter/_target_pos = Vector3(0, 0, 0)
-shader_parameter/_light_direction = Vector3(0.78149515, 0.36191267, 0.508217)
-shader_parameter/_light_color = Color(0.9944765, 0.8682647, 0.8050207, 1)
+shader_parameter/_light_direction = Vector3(0, 0.76604444, 0.64278764)
+shader_parameter/_light_color = Color(1, 1, 1, 1)

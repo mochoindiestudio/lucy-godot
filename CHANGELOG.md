@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.12.4] - 2026-08-03
+
+### Changed
+- Realigned `config/version` to `0.12.4`, carrying over the version number from the project's prior Unity incarnation. This is now the baseline going forward instead of the `0.x.x` sequence started from scratch in Godot.
+- Updated the `terrain_3d` addon, adding its native Vegetation Auto-Populator (`vegetation_populator.gd`, `vegetation_group(s).gd`) and Wind Applier (`wind_applier.gd`) editor tools, plus supporting shader/material assets (`instance_wind.gdshader`, `M_instance_wind_*.tres`, `T_wind_noise.tres`).
+- Continued terrain painting (`terrain_data/*.res`, `scenes/game.scn`) and minor wind-material/mesh-import touch-ups.
+
 ## [0.4.3] - 2026-08-03
 
 ### Added

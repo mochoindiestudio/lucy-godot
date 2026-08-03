@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://chwa34i0shi4"]
+
+[ext_resource type="Shader" uid="uid://dumds33okf8ux" path="res://addons/terrain_3d/extras/shaders/instance_wind.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://bptd3m1gjvn8u" path="res://demo2/assets/models/Bark_NormalTree.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://vr88pj31qwx7" path="res://demo2/assets/models/Bark_NormalTree_Normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://sly33cy7fmgc" path="res://addons/terrain_3d/extras/shaders/T_wind_noise.tres" id="4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2")
+shader_parameter/roughness = 1.0
+shader_parameter/alpha_scissor_enabled = true
+shader_parameter/alpha_scissor_threshold = 0.2
+shader_parameter/normal_enabled = true
+shader_parameter/normal_texture = ExtResource("3")
+shader_parameter/wind_noise = ExtResource("4")
+shader_parameter/wind_direction = Vector2(1, 1)
+shader_parameter/wind_speed = 0.013
+shader_parameter/wind_noise_scale = 0.1
+shader_parameter/wind_strength = 0.05
+shader_parameter/bend_curve = 8.0

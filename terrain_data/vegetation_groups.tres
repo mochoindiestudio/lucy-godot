@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Terrain3DVegetationGroups" format=3 uid="uid://cexq646vdyw3m"]
+
+[ext_resource type="Script" uid="uid://ccvm05r2qk167" path="res://addons/terrain_3d/menu/vegetation_group.gd" id="1_g44bi"]
+[ext_resource type="Script" uid="uid://dmfsrr6u660q6" path="res://addons/terrain_3d/menu/vegetation_groups.gd" id="2_yldkr"]
+
+[sub_resource type="Resource" id="Resource_h40df"]
+script = ExtResource("1_g44bi")
+group_name = "Short Grass"
+mesh_ids = Array[int]([0, 3, 5])
+seed = 1957379938
+slope_range = Vector2(0, 45)
+
+[resource]
+script = ExtResource("2_yldkr")
+groups = Array[ExtResource("1_g44bi")]([SubResource("Resource_h40df")])
