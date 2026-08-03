@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.3] - 2026-08-03
+
+### Added
+- New terrain ground texture set under `textures/` (`dark_grass`, `dark_mud`, `dirt_road`, `grass`, `grass_flowers`, `grass_road`, `mud`, `rock`, `sand`, each with albedo/height + normal/roughness maps).
+
+### Changed
+- Repainted the terrain's heightmap/control-map regions (`terrain_data/*.res`) and updated `scenes/game.scn` to use the new ground texture set.
+
 ## [0.4.2] - 2026-08-03
 
 ### Fixed
