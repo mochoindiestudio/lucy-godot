@@ -1,4 +1,4 @@
-[gd_scene format=4]
+[gd_scene format=4 uid="uid://mr4j11pp4qva"]
 
 [ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_fvr7i"]
 [ext_resource type="Texture2D" uid="uid://covk2wpg8dhat" path="res://models/npcs/bella_albedo.png" id="2_fk77v"]
@@ -156,127 +156,6 @@ bind/8/pose = Transform3D(-99.88541, -4.7853403, 0.08005668, -4.3684735, 90.4752
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t882"]
 albedo_texture = ExtResource("2_fk77v")
-
-[sub_resource type="Animation" id="Animation_ovoqr"]
-resource_name = "mixamo_com"
-length = 0.03333333333333333
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("Skeleton3D:mixamorig_Hips")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0.00502076, 0.6183569, -0.009552127)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("Skeleton3D:mixamorig_Hips")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.70694286, 0.012326131, -0.011394546, 0.7070714)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("Skeleton3D:mixamorig_Spine")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, -0.011500019, 0.7009724, 0.7129909, 0.0122278)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("Skeleton3D:mixamorig_LeftUpLeg")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, -0.0060116863, -0.704765, 0.7094071, -0.003416504)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("Skeleton3D:mixamorig_RightUpLeg")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0.019986752, 0.4498366, -0.8927526, 0.015502516)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("Skeleton3D:mixamorig_LeftLeg")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, -0.077712856, 0.093279466, 0.01232466, 0.99252594)
-tracks/6/type = "rotation_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("Skeleton3D:mixamorig_RightLeg")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, -0.6409022, -0.02717898, -0.0016389919, 0.7671395)
-tracks/7/type = "rotation_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("Skeleton3D:mixamorig_LeftFoot")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.4862684, -0.13069041, 0.16080879, 0.84888375)
-tracks/8/type = "rotation_3d"
-tracks/8/imported = true
-tracks/8/enabled = true
-tracks/8/path = NodePath("Skeleton3D:mixamorig_RightFoot")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0.81157607, 0.03771215, -0.14272808, 0.5652882)
-tracks/9/type = "rotation_3d"
-tracks/9/imported = true
-tracks/9/enabled = true
-tracks/9/path = NodePath("Skeleton3D:mixamorig_Neck")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, 1.921505e-13, -0.70100635, -0.71315503, 1.2910239e-13)
-tracks/10/type = "rotation_3d"
-tracks/10/imported = true
-tracks/10/enabled = true
-tracks/10/path = NodePath("Skeleton3D:mixamorig_LeftShoulder")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0.5531006, -0.43931872, 0.5565761, 0.43738076)
-tracks/11/type = "rotation_3d"
-tracks/11/imported = true
-tracks/11/enabled = true
-tracks/11/path = NodePath("Skeleton3D:mixamorig_RightShoulder")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0.55383396, 0.43878675, -0.5558566, 0.43790135)
-tracks/12/type = "rotation_3d"
-tracks/12/imported = true
-tracks/12/enabled = true
-tracks/12/path = NodePath("Skeleton3D:mixamorig_LeftArm")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, -0.11648694, 0.00014539431, -0.0028137171, 0.9931882)
-tracks/13/type = "rotation_3d"
-tracks/13/imported = true
-tracks/13/enabled = true
-tracks/13/path = NodePath("Skeleton3D:mixamorig_RightArm")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = PackedFloat32Array(0, 1, -0.11651276, 3.4546818e-05, 0.0015167604, 0.993188)
-tracks/14/type = "rotation_3d"
-tracks/14/imported = true
-tracks/14/enabled = true
-tracks/14/path = NodePath("Skeleton3D:mixamorig_LeftForeArm")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = PackedFloat32Array(0, 1, -3.6575773e-07, -0.002524027, 1.0678627e-07, 0.99999684)
-tracks/15/type = "rotation_3d"
-tracks/15/imported = true
-tracks/15/enabled = true
-tracks/15/path = NodePath("Skeleton3D:mixamorig_RightForeArm")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = PackedFloat32Array(0, 1, -2.4973215e-07, 0.00039823778, -4.2867313e-08, 0.99999994)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_sf46l"]
-_data = {
-&"mixamo_com": SubResource("Animation_ovoqr")
-}
 
 [sub_resource type="Animation" id="Animation_g5w8w"]
 resource_name = "idle"
@@ -601,12 +480,10 @@ point_count = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6yukq"]
 xfade_time = 0.35
 xfade_curve = SubResource("Curve_ease")
-advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1evuh"]
 xfade_time = 0.35
 xfade_curve = SubResource("Curve_ease")
-advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8qgrf"]
 states/idle/node = SubResource("AnimationNodeAnimation_akrwp")
@@ -633,28 +510,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(-1, -2.103977e-18, 1.224466e-16, 1.2246469e-16, -0.017180324, 0.9998524, 0, 0.9998524, 0.017180264, 0, -0.0018495845, 0.10764164)
 bones/1/enabled = true
 bones/1/position = Vector3(0, -0.0018495845, 0.10764164)
-bones/1/rotation = Quaternion(4.2922835e-17, 0.7010063, 0.7131551, 4.366671e-17)
+bones/1/rotation = Quaternion(4.2924255e-17, 0.7010063, 0.7131551, 4.366815e-17)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "mixamorig_Spine1"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 3.851746e-33, 1.2339186e-32, -3.851746e-33, 1, -1.3044814e-08, -1.2339186e-32, 1.3044814e-08, 1, 1.2325952e-32, 0.12560035, 7.979728e-17)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.12560035, 0)
-bones/2/rotation = Quaternion(6.522407e-09, 0, 0, 1)
+bones/2/rotation = Quaternion(6.522407e-09, 6.169593e-33, -1.925873e-33, 1)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "mixamorig_Spine2"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, -9.243355e-33, 1.2196909e-32, 9.243355e-33, 1, -3.469447e-18, -1.2196909e-32, 3.469447e-18, 1, -9.244464e-33, 0.14354338, -4.8572257e-17)
 bones/3/enabled = true
 bones/3/position = Vector3(0, 0.14354338, 0)
-bones/3/rotation = Quaternion(-3.6429193e-17, -6.12233e-17, -1.0519876e-18, 1)
+bones/3/rotation = Quaternion(1.7347235e-18, 6.0984544e-33, 4.6216775e-33, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "mixamorig_Neck"
 bones/4/parent = 3
 bones/4/rest = Transform3D(-1, 1.2242853e-16, 2.1036593e-18, 0, -0.017180204, 0.9998524, 1.224466e-16, 0.9998524, 0.017180204, 3.85186e-33, 0.16148624, 1.4007739e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(-3.3976286e-19, 0.16148624, 1.4007739e-09)
-bones/4/rotation = Quaternion(7.388724e-19, 0.70100635, 0.71315503, -8.658463e-17)
+bones/4/rotation = Quaternion(4.3661706e-17, 0.70100635, 0.71315503, -4.2917925e-17)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "mixamorig_Head"
 bones/5/parent = 4
@@ -731,7 +608,7 @@ bones/15/parent = 0
 bones/15/rest = Transform3D(-1, -3.6962387e-08, 1.7763568e-15, 6.925198e-10, -0.018735886, -0.9998245, 3.6955896e-08, -0.9998245, 0.018735766, 0.14349999, -0.0076397704, -0.05980091)
 bones/15/enabled = true
 bones/15/position = Vector3(0.14349999, -0.0076397704, -0.05980091)
-bones/15/rotation = Quaternion(1.2945179e-08, -0.7004514, 0.7137002, 1.3190027e-08)
+bones/15/rotation = Quaternion(1.29451765e-08, -0.7004514, 0.7137002, 1.31900295e-08)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "mixamorig_LeftLeg"
 bones/16/parent = 15
@@ -766,7 +643,7 @@ bones/20/parent = 0
 bones/20/rest = Transform3D(-1, 3.6963705e-08, -1.7763568e-15, -6.183285e-10, -0.016728044, -0.9998601, -3.6958532e-08, -0.9998601, 0.016727984, -0.14349999, -0.0060851737, -0.05980091)
 bones/20/enabled = true
 bones/20/position = Vector3(-0.14349999, -0.0060851737, -0.05980091)
-bones/20/rotation = Quaternion(-1.2958875e-08, -0.70116764, 0.7129965, -1.3177499e-08)
+bones/20/rotation = Quaternion(-1.29588775e-08, -0.70116764, 0.7129965, -1.3177496e-08)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "mixamorig_RightLeg"
 bones/21/parent = 20
@@ -809,13 +686,11 @@ skin = SubResource("Skin_gulqo")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5t882")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Model" unique_id=237042561]
-libraries/ = SubResource("AnimationLibrary_sf46l")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=108502216]
 root_node = NodePath("../Model")
 libraries/moves = SubResource("AnimationLibrary_s1pcw")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=876145207]
+root_node = NodePath("../Model")
 tree_root = SubResource("AnimationNodeStateMachine_8qgrf")
 anim_player = NodePath("../AnimationPlayer")

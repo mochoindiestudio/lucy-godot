@@ -26,7 +26,15 @@ const HALFPI: float = PI / 2.0
 
 
 func _init() -> void:
+	_set_date_from_system()
 	_update_celestial_coords()
+
+
+func _set_date_from_system() -> void:
+	var system_date: Dictionary = Time.get_datetime_dict_from_system()
+	year = system_date.year
+	month = system_date.month
+	day = system_date.day
 
 
 func _ready() -> void:
@@ -140,9 +148,32 @@ var _sky_dome: SkyDome
 ## Syncronize all of Sky3D with your system clock for a realtime sky, time, and date.
 @export var system_sync: bool = false
 
-## A readable game date string, eg. '2025-01-01'. Alias for [member TimeOfDay.game_date].
-@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_READ_ONLY) 
-var game_date: String = "" :
+## A plain text field holding the in-game date as 'YYYY-MM-DD' (year may be shorter/longer, month/day
+## do not require a leading zero, e.g. '2025-1-1' is accepted). Alias for [member TimeOfDay.game_date].
+## Assigning an empty string (what the inspector's "Reset" sends) resets the date to today.
+## Assigning a complete, valid date updates [member year], [member month], and [member day].
+## Incomplete input (eg. while the inspector applies the field mid-keystroke) is ignored so the date
+## does not jump to an intermediate invalid state while typing.
+@export var game_date: String = "" :
+	set(value):
+		if value.is_empty():
+			_set_date_from_system()
+			return
+		var parts: PackedStringArray = value.split("-")
+		if parts.size() != 3:
+			return
+		if not (parts[0].is_valid_int() and parts[1].is_valid_int() and parts[2].is_valid_int()):
+			return
+		var new_year: int = parts[0].to_int()
+		var new_month: int = parts[1].to_int()
+		var new_day: int = parts[2].to_int()
+		if new_month < 1 or new_month > 12:
+			return
+		year = new_year
+		month = new_month
+		if new_day < 1 or new_day > max_days_per_month():
+			return
+		day = new_day
 	get():
 		return "%04d-%02d-%02d" % [ year, month, day ]
 

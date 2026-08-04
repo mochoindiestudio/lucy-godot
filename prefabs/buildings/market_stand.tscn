@@ -1,8 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b7yuqm48sjc5g"]
 
-[ext_resource type="PackedScene" path="res://models/buildings/market_stand.fbx" id="1_lr1b3"]
+[ext_resource type="PackedScene" uid="uid://d0ls3pwbpx0d4" path="res://models/buildings/market_stand.glb" id="1_lr1b3"]
 
 [node name="Market Stand" type="Node3D" unique_id=1187537279]
 
-[node name="Model" type="Node3D" parent="." unique_id=2074906455 instance=ExtResource("1_lr1b3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363281, 0)
+[node name="Model" parent="." unique_id=2074906455 instance=ExtResource("1_lr1b3")]

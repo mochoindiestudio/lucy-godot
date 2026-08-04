@@ -126,9 +126,12 @@ func show_sky() -> void:
 		return tod.game_time_enabled if tod else game_time_enabled
 
 
-## A readable game date string, eg. '2025-01-01'. Alias for [member TimeOfDay.game_date].
-@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_READ_ONLY) 
-var game_date: String = "" :
+## A plain text field holding the in-game date as 'YYYY-MM-DD'. Alias for [member TimeOfDay.game_date].
+## Assigning an empty string (what the inspector's "Reset" sends) resets the date to today.
+@export var game_date: String = "" :
+	set(value):
+		if tod:
+			tod.game_date = value
 	get:
 		return tod.game_date if tod else game_date
 

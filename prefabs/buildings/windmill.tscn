@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vo56wwi348l7"]
 
 [ext_resource type="Script" uid="uid://bcblpmplainph" path="res://prefabs/buildings/windmill.gd" id="1_2qpdb"]
-[ext_resource type="PackedScene" uid="uid://bdwx31tbwn24a" path="res://models/buildings/windmill_base.fbx" id="2_i5i4f"]
+[ext_resource type="PackedScene" uid="uid://br60s7y4ktif8" path="res://models/buildings/windmill_base.glb" id="2_i5i4f"]
 [ext_resource type="PackedScene" uid="uid://t14jhkn6px8g" path="res://models/buildings/windmill_rotor.glb" id="3_oitkk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g14r7"]
@@ -19,19 +19,18 @@ albedo_texture = SubResource("NoiseTexture2D_7n61d")
 material = SubResource("StandardMaterial3D_1fgmy")
 top_radius = 0.009765625
 bottom_radius = 0.009765625
-height = 0.08728027
+height = 0.13006592
 
 [node name="Windmill" type="Node3D" unique_id=2105207787]
 script = ExtResource("1_2qpdb")
 
 [node name="Model" parent="." unique_id=989540111 instance=ExtResource("2_i5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="RotorPivot" type="Node3D" parent="." unique_id=213997038]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0038027167, 0.6174079, 0.23824573)
+transform = Transform3D(5.3239326, 0, 1.3804853, 0, 5.5, 0, -1.3804853, 0, 5.3239326, 0.50264096, 4.3037705, 1.4552295)
 
 [node name="Model" parent="RotorPivot" unique_id=1611021114 instance=ExtResource("3_oitkk")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1776795288]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.003734678, 0.61601526, 0.15671381)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RotorPivot" unique_id=1776795288]
+transform = Transform3D(1.0000015, 1.0579824e-06, -9.769963e-15, 0, -4.3711392e-08, -1, -1.0579824e-06, 1.0000015, -4.371141e-08, -1.8626451e-08, 0, -0.08886765)
 mesh = SubResource("CylinderMesh_sbqex")

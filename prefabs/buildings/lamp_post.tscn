@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b0230ngp3rop3"]
+
+[ext_resource type="PackedScene" uid="uid://6dllkdwlyvfo" path="res://models/buildings/lamp_post.glb" id="1_wvptf"]
+[ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_5i1hp"]
+
+[node name="Lamp Post" type="Node3D" unique_id=735337667]
+
+[node name="lamp_post" parent="." unique_id=1883402145 instance=ExtResource("1_wvptf")]
+
+[node name="Lamp" parent="." unique_id=624308211 instance=ExtResource("2_5i1hp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2198962, 2.6159809, -0.009008765)

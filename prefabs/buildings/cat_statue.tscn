@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://6b880tnbuqn7"]
 
-[ext_resource type="PackedScene" path="res://models/buildings/cat_statue.fbx" id="1_i1ymn"]
+[ext_resource type="PackedScene" uid="uid://o0ifma25l03r" path="res://models/buildings/cat_statue.glb" id="1_i1ymn"]
 
 [node name="Cat Statue" type="Node3D" unique_id=921751203]
 
-[node name="Model" type="Node3D" parent="." unique_id=1590765322 instance=ExtResource("1_i1ymn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+[node name="Model" parent="." unique_id=1590765322 instance=ExtResource("1_i1ymn")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)

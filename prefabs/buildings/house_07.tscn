@@ -1,8 +1,11 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bo2paah72pnai"]
 
-[ext_resource type="PackedScene" path="res://models/buildings/house_07.fbx" id="1_l2f5c"]
+[ext_resource type="PackedScene" uid="uid://8rdkdc87wl2l" path="res://models/buildings/house_07.glb" id="1_l2f5c"]
+[ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_6hled"]
 
 [node name="House 07" type="Node3D" unique_id=105688186]
 
-[node name="Model" type="Node3D" parent="." unique_id=1141007397 instance=ExtResource("1_l2f5c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.451172, 0)
+[node name="Model" parent="." unique_id=1141007397 instance=ExtResource("1_l2f5c")]
+
+[node name="Lamp" parent="Model" unique_id=624308211 instance=ExtResource("2_6hled")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2575054, 2.1911995, 2.2525072)
