@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.13.0] - 2026-08-04
+## [0.14.0] - 2026-08-04
+
+### Added
+- New `ship` prefab (`prefabs/buildings/ship.tscn`, `ship.gd`) with a subtle idle bob/roll/pitch so it reads as sitting on moving water, deliberately not synced to the ocean shader's actual wave height.
+- Ship flags now wave in the wind. The model's flag meshes were split from the hull in `models/buildings/ship.glb`, and `ship.gd` applies `materials/ship_flag.gdshader` to any mesh node named like `flag`/`flag.001` — a copy of the ship's real material (via the editor's Convert to ShaderMaterial) with a single-axis vertex displacement added directly into it, anchored at the pole and reaching full strength at the tip.
+
+### Changed
+- Ship placed in `scenes/game.scn`.
 
 ### Added
 - Building lamps (`prefabs/buildings/lamp.gd`, used by `lamp.tscn`, `lamp_post.tscn`, `wall_lamp_1.tscn`, `wall_lamp_2.tscn`) now turn on and off automatically with the day/night cycle, driven by the existing `Sky3D` node's `day_night_changed` signal. Works live in the editor viewport as well as at runtime (`@tool`), matching the `sky_3d` addon's own editor-time behavior.
