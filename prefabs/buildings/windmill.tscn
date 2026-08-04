@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bcblpmplainph" path="res://prefabs/buildings/windmill.gd" id="1_2qpdb"]
 [ext_resource type="PackedScene" uid="uid://br60s7y4ktif8" path="res://models/buildings/windmill_base.glb" id="2_i5i4f"]
 [ext_resource type="PackedScene" uid="uid://t14jhkn6px8g" path="res://models/buildings/windmill_rotor.glb" id="3_oitkk"]
+[ext_resource type="PackedScene" uid="uid://sa2ucy05cjqr" path="res://prefabs/buildings/wall_lamp_2.tscn" id="4_sg3q8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g14r7"]
 
@@ -34,3 +35,6 @@ transform = Transform3D(5.3239326, 0, 1.3804853, 0, 5.5, 0, -1.3804853, 0, 5.323
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RotorPivot" unique_id=1776795288]
 transform = Transform3D(1.0000015, 1.0579824e-06, -9.769963e-15, 0, -4.3711392e-08, -1, -1.0579824e-06, 1.0000015, -4.371141e-08, -1.8626451e-08, 0, -0.08886765)
 mesh = SubResource("CylinderMesh_sbqex")
+
+[node name="Wall Lamp 2" parent="." unique_id=1246192810 instance=ExtResource("4_sg3q8")]
+transform = Transform3D(0.46962324, -0.021562498, 0.17026183, -0.0022594354, 0.4952182, 0.06894809, -0.17160687, -0.06552864, 0.46503457, 0.550991, 1.3273634, 0.91858584)

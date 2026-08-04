@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.13.0] - 2026-08-04
+
+### Added
+- Building lamps (`prefabs/buildings/lamp.gd`, used by `lamp.tscn`, `lamp_post.tscn`, `wall_lamp_1.tscn`, `wall_lamp_2.tscn`) now turn on and off automatically with the day/night cycle, driven by the existing `Sky3D` node's `day_night_changed` signal. Works live in the editor viewport as well as at runtime (`@tool`), matching the `sky_3d` addon's own editor-time behavior.
+- New `ship` building model under `models/buildings/`, with albedo/emissive/metallic-roughness/normal textures.
+
+### Fixed
+- `wall_lamp_1.tscn` had a bare, script-less `OmniLight3D` that stayed lit permanently; it's now wired through the same `lamp.gd` day/night logic as the other lamp prefabs, keeping its original light color/range/shadow settings.
+
+### Changed
+- Continued terrain painting and windmill placement touch-ups (`terrain_data/*.res`, `scenes/game.scn`, `prefabs/buildings/windmill.tscn`).
+
 ## [0.12.5] - 2026-08-04
 
 ### Removed
