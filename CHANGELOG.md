@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.12.5] - 2026-08-04
+
+### Removed
+- Animation/scale-comparison test grounds (`scenes/char_test.tscn`, `scenes/building_test.tscn`, `scripts/char_test.gd`, `scripts/building_test.gd`) and their preview-scene generator scripts (`tools/build_character_scenes.gd`, `tools/build_building_scenes.gd`, `tools/build_windmill_scene.gd`), no longer needed now that the character/building previews they generated live under `prefabs/`.
+- Duplicate `materials/instance_wind.gdshader`, already present under `addons/terrain_3d/extras/shaders/` and `models/nature/wind_materials/`.
+
+### Changed
+- `run/main_scene` in `project.godot` repointed from the retired `scenes/char_test.tscn` to `scenes/game.scn`.
+- Reorganized character and building preview scenes from `characters/` and `buildings/` into `prefabs/characters/` and `prefabs/buildings/`.
+- Adjusted the ocean shader's `sea_level` parameter (`addons/terrain_3d/extras/shaders/M_ocean.tres`).
+- Continued terrain painting (`terrain_data/*.res`, `scenes/game.scn`).
+
+### Added
+- New building models under `models/buildings/` (`direction_signpost`, `directions_signpost`, `foot_bridge`, `pier`), each with albedo/emissive/metallic-roughness/normal textures.
+
 ## [0.12.4] - 2026-08-03
 
 ### Changed
