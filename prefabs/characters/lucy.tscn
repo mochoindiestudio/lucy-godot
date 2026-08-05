@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://fumm5tfovwp7"]
 
-[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_p7scc"]
+[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_animator.gd" id="1_p7scc"]
 [ext_resource type="Texture2D" uid="uid://c3hhv3qujynja" path="res://models/lucy/lucy_rigged.png" id="2_3lq1f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ly3b"]
@@ -989,17 +989,67 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vxsn2"]
 animation = &"moves/idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vxsn2"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vxsn2"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_vxsn2")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vxsn2")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p88e6"]
 animation = &"moves/running"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_p88e6"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p88e6"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_p88e6")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_p88e6")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfv1n"]
 animation = &"moves/talk_1"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_sfv1n"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_sfv1n"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_sfv1n")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_sfv1n")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7dqtq"]
 animation = &"moves/talk_2"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_7dqtq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7dqtq"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_7dqtq")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_7dqtq")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5g2tp"]
 animation = &"moves/walking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_5g2tp"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5g2tp"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_5g2tp")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5g2tp")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="Curve" id="Curve_ease"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -1114,15 +1164,15 @@ xfade_curve = SubResource("Curve_ease")
 advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ockqn"]
-states/idle/node = SubResource("AnimationNodeAnimation_vxsn2")
+states/idle/node = SubResource("AnimationNodeBlendTree_vxsn2")
 states/idle/position = Vector2(0, 0)
-states/running/node = SubResource("AnimationNodeAnimation_p88e6")
+states/running/node = SubResource("AnimationNodeBlendTree_p88e6")
 states/running/position = Vector2(440, 0)
-states/talk_1/node = SubResource("AnimationNodeAnimation_sfv1n")
+states/talk_1/node = SubResource("AnimationNodeBlendTree_sfv1n")
 states/talk_1/position = Vector2(660, 140)
-states/talk_2/node = SubResource("AnimationNodeAnimation_7dqtq")
+states/talk_2/node = SubResource("AnimationNodeBlendTree_7dqtq")
 states/talk_2/position = Vector2(880, 0)
-states/walking/node = SubResource("AnimationNodeAnimation_5g2tp")
+states/walking/node = SubResource("AnimationNodeBlendTree_5g2tp")
 states/walking/position = Vector2(220, 140)
 transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_kigwj"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_v6bjo"), "idle", "talk_1", SubResource("AnimationNodeStateMachineTransition_k5dik"), "idle", "talk_2", SubResource("AnimationNodeStateMachineTransition_71uak"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_bguop"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_ria84"), "walking", "talk_1", SubResource("AnimationNodeStateMachineTransition_vj5bw"), "walking", "talk_2", SubResource("AnimationNodeStateMachineTransition_g68vs"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_6dgiv"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_rwek4"), "running", "talk_1", SubResource("AnimationNodeStateMachineTransition_nf0y3"), "running", "talk_2", SubResource("AnimationNodeStateMachineTransition_2y3s7"), "talk_1", "idle", SubResource("AnimationNodeStateMachineTransition_8in5t"), "talk_1", "walking", SubResource("AnimationNodeStateMachineTransition_yh7bo"), "talk_1", "running", SubResource("AnimationNodeStateMachineTransition_l8jmb"), "talk_1", "talk_2", SubResource("AnimationNodeStateMachineTransition_k7pgy"), "talk_2", "idle", SubResource("AnimationNodeStateMachineTransition_kpwt6"), "talk_2", "walking", SubResource("AnimationNodeStateMachineTransition_qigq0"), "talk_2", "running", SubResource("AnimationNodeStateMachineTransition_2l80d"), "talk_2", "talk_1", SubResource("AnimationNodeStateMachineTransition_xrc8c")]
 graph_offset = Vector2(-106, -52)

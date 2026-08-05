@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.15.0] - 2026-08-05
+
+### Added
+- Playable `Player` prefab (`prefabs/player/player.tscn`, `player_controller.gd`): third-person camera-relative movement, mouse-orbit camera, raycast ground check, wraps the `Lucy` character scene.
+- Lucy's firefly glow, `LoveLight` (`prefabs/player/love_light.gd`): an `OmniLight3D` that stays off until activated, flickers organically via seeded 1D Perlin noise (`flicker_enabled`/`flicker_speed`/`flicker_intensity`/`flicker_seed` knobs), and auto-shuts-off after a 15s `AutoOffTimer`. Triggered with the new `shine_light` input action (F key).
+- Generic `EnergyComponent` (`prefabs/player/energy_component.gd`), a 0-100 energy pool (`max_energy`/`starting_energy` knobs) that `player_controller.gd` spends from (`shine_cost`, default 10) each time Lucy shines her light. `recover()` is exposed for future map recovery regions.
+- Godot AI MCP addon (`addons/godot_ai/`) wired in for editor automation during development, plus `.vscode/settings.json` pointing the Godot Tools extension at the local editor executable.
+- `prefabs/props/directions.tscn`.
+
+### Changed
+- Renamed `character_preview.gd` to `character_animator.gd` and gave every character's animation state machine (Lucy + all NPCs) a per-state `AnimationNodeTimeScale` node for tunable playback speed.
+- Continued terrain painting and prop placement touch-ups (`terrain_data/*.res`, `scenes/game.scn`).
+
 ## [0.14.0] - 2026-08-04
 
 ### Added

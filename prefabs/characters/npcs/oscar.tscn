@@ -1,6 +1,6 @@
 [gd_scene format=4]
 
-[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_3ta6s"]
+[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_animator.gd" id="1_3ta6s"]
 [ext_resource type="Texture2D" uid="uid://cbte05fh02s7k" path="res://models/npcs/oscar_albedo.png" id="2_ff5hk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vm445"]
@@ -569,8 +569,28 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhkxn"]
 animation = &"moves/idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fhkxn"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fhkxn"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_fhkxn")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_fhkxn")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gw5pc"]
 animation = &"moves/talking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gw5pc"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gw5pc"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_gw5pc")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gw5pc")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="Curve" id="Curve_ease"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -587,9 +607,9 @@ xfade_curve = SubResource("Curve_ease")
 advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i1hkp"]
-states/idle/node = SubResource("AnimationNodeAnimation_fhkxn")
+states/idle/node = SubResource("AnimationNodeBlendTree_fhkxn")
 states/idle/position = Vector2(0, 0)
-states/talking/node = SubResource("AnimationNodeAnimation_gw5pc")
+states/talking/node = SubResource("AnimationNodeBlendTree_gw5pc")
 states/talking/position = Vector2(220, 140)
 transitions = ["idle", "talking", SubResource("AnimationNodeStateMachineTransition_6gdky"), "talking", "idle", SubResource("AnimationNodeStateMachineTransition_e76x8")]
 

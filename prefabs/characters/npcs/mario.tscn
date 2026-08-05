@@ -1,6 +1,6 @@
 [gd_scene format=4]
 
-[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_cea8v"]
+[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_animator.gd" id="1_cea8v"]
 [ext_resource type="Texture2D" uid="uid://dahhg15r0pipj" path="res://models/npcs/mario_albedo.png" id="2_msym3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hryfq"]
@@ -576,8 +576,28 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a4ieq"]
 animation = &"moves/idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_a4ieq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_a4ieq"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_a4ieq")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_a4ieq")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcvjd"]
 animation = &"moves/talking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hcvjd"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hcvjd"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hcvjd")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hcvjd")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="Curve" id="Curve_ease"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -594,9 +614,9 @@ xfade_curve = SubResource("Curve_ease")
 advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tml2g"]
-states/idle/node = SubResource("AnimationNodeAnimation_a4ieq")
+states/idle/node = SubResource("AnimationNodeBlendTree_a4ieq")
 states/idle/position = Vector2(0, 0)
-states/talking/node = SubResource("AnimationNodeAnimation_hcvjd")
+states/talking/node = SubResource("AnimationNodeBlendTree_hcvjd")
 states/talking/position = Vector2(220, 140)
 transitions = ["idle", "talking", SubResource("AnimationNodeStateMachineTransition_j3gwp"), "talking", "idle", SubResource("AnimationNodeStateMachineTransition_q1mdc")]
 

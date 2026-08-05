@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://mr4j11pp4qva"]
 
-[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_fvr7i"]
+[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_animator.gd" id="1_fvr7i"]
 [ext_resource type="Texture2D" uid="uid://covk2wpg8dhat" path="res://models/npcs/bella_albedo.png" id="2_fk77v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcd5w"]
@@ -470,8 +470,28 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_akrwp"]
 animation = &"moves/idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_akrwp"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_akrwp"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_akrwp")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_akrwp")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rpng2"]
 animation = &"moves/talk"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_rpng2"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rpng2"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_rpng2")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_rpng2")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="Curve" id="Curve_ease"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -486,9 +506,9 @@ xfade_time = 0.35
 xfade_curve = SubResource("Curve_ease")
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8qgrf"]
-states/idle/node = SubResource("AnimationNodeAnimation_akrwp")
+states/idle/node = SubResource("AnimationNodeBlendTree_akrwp")
 states/idle/position = Vector2(0, 0)
-states/talk/node = SubResource("AnimationNodeAnimation_rpng2")
+states/talk/node = SubResource("AnimationNodeBlendTree_rpng2")
 states/talk/position = Vector2(220, 140)
 transitions = ["idle", "talk", SubResource("AnimationNodeStateMachineTransition_6yukq"), "talk", "idle", SubResource("AnimationNodeStateMachineTransition_1evuh")]
 

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cxg161sipda21"]
+
+[ext_resource type="PackedScene" uid="uid://fumm5tfovwp7" path="res://prefabs/characters/lucy.tscn" id="1_lucy"]
+[ext_resource type="Script" uid="uid://bel826d607asy" path="res://prefabs/player/player_controller.gd" id="2_ctrl"]
+[ext_resource type="Script" uid="uid://cudtqjnu1mwmm" path="res://prefabs/player/love_light.gd" id="3_binfn"]
+[ext_resource type="Script" uid="uid://dlgqvc0rmohoq" path="res://prefabs/player/energy_component.gd" id="4_klv5p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.3
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=1545378329]
+collision_layer = 2
+script = ExtResource("2_ctrl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1979724303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="GroundRayCast" type="RayCast3D" parent="." unique_id=245325009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+target_position = Vector3(0, -0.6, 0)
+
+[node name="Facing" type="Node3D" parent="." unique_id=459767990]
+
+[node name="Lucy" parent="Facing" unique_id=1318198369 instance=ExtResource("1_lucy")]
+transform = Transform3D(-0.6427878, 0, 0.7660446, 0, 1, 0, -0.7660446, 0, -0.6427878, 0, 0, 0)
+
+[node name="LoveLight" type="OmniLight3D" parent="Facing" unique_id=840090782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3398742, 0.27924716, 0.23407742)
+visible = false
+light_color = Color(0.98087186, 0.55183494, 0.99999946, 1)
+light_energy = 3.0
+shadow_enabled = true
+omni_range = 20.0
+omni_attenuation = 0.506
+script = ExtResource("3_binfn")
+
+[node name="AutoOffTimer" type="Timer" parent="Facing/LoveLight" unique_id=736584424]
+wait_time = 15.0
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=743519124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=953468123]
+spring_length = 4.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1020365201]
+current = true
+
+[node name="Energy" type="Node" parent="." unique_id=439813545]
+script = ExtResource("4_klv5p")

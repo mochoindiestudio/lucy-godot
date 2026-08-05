@@ -1,6 +1,6 @@
 [gd_scene format=4]
 
-[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_preview.gd" id="1_rmc52"]
+[ext_resource type="Script" uid="uid://o2ujxbp3ako0" path="res://prefabs/characters/character_animator.gd" id="1_rmc52"]
 [ext_resource type="Texture2D" uid="uid://ydfnr86sv011" path="res://models/npcs/lucca_albedo.png" id="2_p00ir"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xt6ok"]
@@ -758,11 +758,41 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hcahq"]
 animation = &"moves/idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hcahq"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_hcahq"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_hcahq")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hcahq")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gwj2w"]
 animation = &"moves/running"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_gwj2w"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gwj2w"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_gwj2w")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gwj2w")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxotp"]
 animation = &"moves/walking"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lxotp"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lxotp"]
+graph_offset = Vector2(0, 0)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_lxotp")
+nodes/Animation/position = Vector2(80, 60)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_lxotp")
+nodes/TimeScale/position = Vector2(320, 60)
+node_connections = ["TimeScale", 0, "Animation", "output", 0, "TimeScale"]
 
 [sub_resource type="Curve" id="Curve_ease"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -799,11 +829,11 @@ xfade_curve = SubResource("Curve_ease")
 advance_mode = 1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7m46j"]
-states/idle/node = SubResource("AnimationNodeAnimation_hcahq")
+states/idle/node = SubResource("AnimationNodeBlendTree_hcahq")
 states/idle/position = Vector2(0, 0)
-states/running/node = SubResource("AnimationNodeAnimation_gwj2w")
+states/running/node = SubResource("AnimationNodeBlendTree_gwj2w")
 states/running/position = Vector2(440, 0)
-states/walking/node = SubResource("AnimationNodeAnimation_lxotp")
+states/walking/node = SubResource("AnimationNodeBlendTree_lxotp")
 states/walking/position = Vector2(220, 140)
 transitions = ["idle", "walking", SubResource("AnimationNodeStateMachineTransition_u6g08"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_wpbmb"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_1ntu8"), "walking", "running", SubResource("AnimationNodeStateMachineTransition_26ils"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_3xm5l"), "running", "walking", SubResource("AnimationNodeStateMachineTransition_s5xa1")]
 

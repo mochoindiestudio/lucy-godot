@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c4511er4n0w1f"]
+
+[ext_resource type="PackedScene" uid="uid://ckwg2lau1i42j" path="res://models/buildings/directions_signpost.glb" id="1_y3kga"]
+
+[node name="Directions" type="Node3D" unique_id=630462507]
+
+[node name="directions_signpost" parent="." unique_id=569506301 instance=ExtResource("1_y3kga")]
