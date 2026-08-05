@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.18.0] - 2026-08-05
+
+### Added
+- Generic interaction system: `Interactable` (`prefabs/interaction/interactable.gd`), an `Area3D` component droppable on any object, exposing a `prompt_text` and an `interacted` signal. The player's new `InteractionArea` (`prefabs/player/interaction_area.gd`, added to `player.tscn`) detects nearby `Interactable`s on a dedicated physics layer, tracks the closest one, and calls `interact()` on the new `interact` input action (`E`).
+- `InteractPanel` HUD component (`ui/components/interact_panel.tscn`/`.gd`): same masked-`SubViewport` recipe as `Minimap`/`LucyEnergyBar` -- `panels_bkg.png` stretched via `NinePatchRect`, clipped through `fill_mask.gdshader` with `ui/images/interact_panel_mask.png`, `ui/images/interact_panel.png` layered on top as the frame. `ui/hud.gd` shows/hides it and sets its text from the player's `InteractionArea.nearest_interactable_changed` signal.
+- `prefabs/props/directions.tscn` now carries an `Interactable` child and a script (`directions.gd`) that connects to its own `interacted` signal as a first working example -- currently just prints to console.
+
 ## [0.17.0] - 2026-08-05
 
 ### Added

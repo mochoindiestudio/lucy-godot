@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://ui/components/interact_panel.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://ui/images/panels_bkg.png" id="2_bkg"]
+[ext_resource type="Texture2D" path="res://ui/images/interact_panel.png" id="3_frame"]
+[ext_resource type="Material" path="res://ui/components/interact_panel_mask_material.tres" id="4_mask"]
+
+[node name="InteractPanel" type="Control"]
+custom_minimum_size = Vector2(325, 147)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 325.0
+offset_bottom = 147.0
+mouse_filter = 2
+visible = false
+script = ExtResource("1_script")
+
+[node name="Viewport" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 325.0
+offset_bottom = 147.0
+mouse_filter = 2
+material = ExtResource("4_mask")
+stretch = true
+
+[node name="BkgView" type="SubViewport" parent="Viewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(325, 147)
+
+[node name="Background" type="NinePatchRect" parent="Viewport/BkgView"]
+texture = ExtResource("2_bkg")
+offset_right = 325.0
+offset_bottom = 147.0
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 325.0
+offset_bottom = 147.0
+mouse_filter = 2
+texture = ExtResource("3_frame")
+
+[node name="KeyLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 38.0
+offset_top = 39.0
+offset_right = 108.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 32
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 118.0
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 22
+text = "Interagir"
+horizontal_alignment = 1
+vertical_alignment = 1

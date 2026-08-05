@@ -4,10 +4,14 @@
 [ext_resource type="Script" uid="uid://bel826d607asy" path="res://prefabs/player/player_controller.gd" id="2_ctrl"]
 [ext_resource type="Script" uid="uid://cudtqjnu1mwmm" path="res://prefabs/player/love_light.gd" id="3_binfn"]
 [ext_resource type="Script" uid="uid://dlgqvc0rmohoq" path="res://prefabs/player/energy_component.gd" id="4_klv5p"]
+[ext_resource type="Script" uid="uid://c416u23slr21m" path="res://prefabs/player/interaction_area.gd" id="5_klv5p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.3
 height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iylwk"]
+radius = 0.3
 
 [node name="Player" type="CharacterBody3D" unique_id=1545378329]
 collision_layer = 2
@@ -56,3 +60,10 @@ script = ExtResource("4_klv5p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 light_energy = 0.333
 omni_range = 10.0
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=2097413036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+script = ExtResource("5_klv5p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=2065730518]
+shape = SubResource("SphereShape3D_iylwk")

@@ -6,11 +6,14 @@ extends Control
 
 @export var energy_component_path: NodePath
 @export var player_path: NodePath
+@export var interaction_area_path: NodePath
 
 @onready var _energy_bar: LucyEnergyBar = %EnergyBar
 @onready var _energy_component: EnergyComponent = get_node_or_null(energy_component_path)
 @onready var _minimap: Minimap = %Minimap
 @onready var _player: Node3D = get_node_or_null(player_path)
+@onready var _interact_panel: InteractPanel = %InteractPanel
+@onready var _interaction_area: InteractionArea = get_node_or_null(interaction_area_path)
 
 func _ready() -> void:
 	if _energy_component == null:
@@ -20,10 +23,20 @@ func _ready() -> void:
 		_energy_component.energy_changed.connect(_on_energy_changed)
 	if _player == null:
 		push_warning("HUD: no player assigned; minimap will not scroll.")
+	if _interaction_area == null:
+		push_warning("HUD: no InteractionArea assigned; interact panel will not show.")
+	else:
+		_interaction_area.nearest_interactable_changed.connect(_on_nearest_interactable_changed)
 
 func _process(_delta: float) -> void:
 	if _player != null:
 		_minimap.set_world_position(_player.global_position)
+
+func _on_nearest_interactable_changed(interactable: Interactable) -> void:
+	if interactable == null:
+		_interact_panel.hide_prompt()
+	else:
+		_interact_panel.show_prompt(interactable.prompt_text)
 
 func _on_energy_changed(current: float, max_value: float) -> void:
 	_energy_bar.energy_percent = _to_percent(current, max_value)
