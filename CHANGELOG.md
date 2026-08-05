@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.16.0] - 2026-08-05
+
+### Added
+- Reusable `LucyEnergyBar` HUD component (`ui/components/lucy_energy_bar.tscn`/`.gd`): layers the `lucy_indicator` portrait frame, `progressbar_track`/`progressbar_fill` art, and a happy/sad portrait swap (below a 30% threshold) driven purely by an exported `energy_percent` and two typed signals (`energy_changed`, `mood_changed`). The pink fill is clipped to the track's rounded interior via a small canvas shader (`ui/components/fill_mask.gdshader`) masked by `ui/images/progressbar-track-mask.png`, so only the growing/receding edge is a straight cut.
+- `UI` HUD layer added to `scenes/game.scn`, hosting the energy bar anchored to the bottom-left corner (30px margin). `ui/hud.gd` wires it to the Player's existing `EnergyComponent` via an exported `NodePath`, so the bar tracks Lucy's real energy pool live.
+
+### Changed
+- Player prefab: added an always-on, script-less `OmniLight3D` for extra fill lighting on Lucy.
+
 ## [0.15.0] - 2026-08-05
 
 ### Added

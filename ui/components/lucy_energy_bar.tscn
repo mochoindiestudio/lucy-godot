@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://djyrfnrjwblsn"]
+
+[ext_resource type="Script" uid="uid://gjis7iq40dqj" path="res://ui/components/lucy_energy_bar.gd" id="1_4q52d"]
+[ext_resource type="Texture2D" uid="uid://d23vpfgm20dso" path="res://ui/images/portraits/lucy_happy.png" id="2_lbd1r"]
+[ext_resource type="Texture2D" uid="uid://k1lhwpk51dcw" path="res://ui/images/lucy_indicator.png" id="3_wd50q"]
+[ext_resource type="Texture2D" uid="uid://dtmd7blj5aua" path="res://ui/images/progressbar_track.png" id="4_micxg"]
+[ext_resource type="Material" path="res://ui/components/fill_mask_material.tres" id="5_lbd1r"]
+[ext_resource type="Texture2D" uid="uid://m46v1icav76o" path="res://ui/images/progressbar_fill.png" id="5_ugipo"]
+
+[node name="LucyEnergyBar" type="Control" unique_id=220548970]
+custom_minimum_size = Vector2(256, 78)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 78.0
+mouse_filter = 2
+script = ExtResource("1_4q52d")
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=459300185]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 22.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 68.0
+mouse_filter = 2
+texture = ExtResource("2_lbd1r")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Frame" type="TextureRect" parent="." unique_id=1033146022]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 78.0
+mouse_filter = 2
+texture = ExtResource("3_wd50q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Track" type="TextureRect" parent="." unique_id=1341935184]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 19.0
+offset_right = 224.0
+offset_bottom = 59.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 2)
+mouse_filter = 2
+texture = ExtResource("4_micxg")
+
+[node name="FillClip" type="Control" parent="Track" unique_id=307070457]
+unique_name_in_owner = true
+clip_contents = true
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Fill" type="TextureRect" parent="Track/FillClip" unique_id=304295827]
+material = ExtResource("5_lbd1r")
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("5_ugipo")
+expand_mode = 1
