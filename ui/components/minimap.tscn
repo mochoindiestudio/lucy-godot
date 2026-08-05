@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://ui/components/minimap.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://do2f1pyk1eg40" path="res://assets/map.png" id="2_map"]
+[ext_resource type="Texture2D" path="res://ui/images/map_pin_icon.tres" id="3_pin"]
+[ext_resource type="Texture2D" uid="uid://b7dgjss1mck2v" path="res://ui/images/minimap.png" id="4_frame"]
+[ext_resource type="Material" path="res://ui/components/minimap_mask_material.tres" id="5_mask"]
+
+[node name="Minimap" type="Control"]
+custom_minimum_size = Vector2(218, 227)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 218.0
+offset_bottom = 227.0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Viewport" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 227.0
+mouse_filter = 2
+material = ExtResource("5_mask")
+stretch = true
+
+[node name="MapView" type="SubViewport" parent="Viewport" unique_id=1]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(218, 227)
+
+[node name="MapTexture" type="TextureRect" parent="Viewport/MapView" unique_id=2]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1254.0
+offset_bottom = 1254.0
+mouse_filter = 2
+texture = ExtResource("2_map")
+
+[node name="PlayerPin" type="TextureRect" parent="Viewport/MapView"]
+layout_mode = 0
+offset_left = 97.22
+offset_top = 98.5
+offset_right = 120.78
+offset_bottom = 128.5
+mouse_filter = 2
+texture = ExtResource("3_pin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 218.0
+offset_bottom = 227.0
+mouse_filter = 2
+texture = ExtResource("4_frame")
+expand_mode = 1
+stretch_mode = 4

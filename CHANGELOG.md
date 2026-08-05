@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.17.0] - 2026-08-05
+
+### Added
+- `Minimap` HUD component (`ui/components/minimap.tscn`/`.gd`): scrolls `assets/map.png` beneath a fixed player pin so the visible map always centers on Lucy. A `SubViewport` renders the scrolling map + pin, and a `SubViewportContainer` masked by `ui/components/minimap_mask_material.tres` (reusing the existing `fill_mask.gdshader` with `ui/images/minimap_mask.png`) clips it to the wreath frame's circular opening; `ui/images/minimap.png` sits on top as decoration. The pin is `ui/images/map_pin_icon.tres`, an `AtlasTexture` region of the first icon in `map_icons.png`. Scale (`map_pixels_per_world_unit`) is derived from the `terrain_data` region grid (4 regions of `region_size` 512, centered on the origin = 2048 world units) mapped onto the 1254px map image, and is exposed in the inspector along with a `flip_z` toggle for tuning against the live terrain.
+- `UI` HUD layer in `scenes/game.scn` now also hosts the minimap, anchored to the bottom-right corner (30px margin). `ui/hud.gd` gained a `player_path` export and pushes the Player's `global_position` to the minimap every frame.
+
 ## [0.16.0] - 2026-08-05
 
 ### Added
