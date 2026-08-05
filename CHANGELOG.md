@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.19.0] - 2026-08-05
+
+### Added
+- `InteractPanel` now tracks its target in screen space instead of sitting at a fixed HUD position: `ui/hud.gd` derives the player's `Camera3D` from the existing `player_path` and reprojects `interactable.global_position + label_offset` every frame via `Camera3D.unproject_position()`, hiding the panel when the target swings behind the camera. `Interactable` gained a `label_offset` export so each object can tune where above itself the prompt should float.
+- Sparkle particles around `InteractPanel`: a `GPUParticles2D` (`Sparkles`, last child so it renders over the frame/labels) using `ui/images/star_particle.png`, drifting upward with randomized scale/rotation and a warm gold tint. `InteractPanel.show_prompt()`/`hide_prompt()` start and stop emission alongside visibility.
+
 ## [0.18.0] - 2026-08-05
 
 ### Added

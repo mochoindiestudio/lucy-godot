@@ -1,50 +1,67 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://bq4244xueyj4x"]
 
-[ext_resource type="Script" path="res://ui/components/interact_panel.gd" id="1_script"]
-[ext_resource type="Texture2D" path="res://ui/images/panels_bkg.png" id="2_bkg"]
-[ext_resource type="Texture2D" path="res://ui/images/interact_panel.png" id="3_frame"]
+[ext_resource type="Script" uid="uid://7a17t880elg7" path="res://ui/components/interact_panel.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b1wmxvhcqxhrm" path="res://ui/images/panels_bkg.png" id="2_bkg"]
+[ext_resource type="Texture2D" uid="uid://eq8mdt7sqb00" path="res://ui/images/interact_panel.png" id="3_frame"]
 [ext_resource type="Material" path="res://ui/components/interact_panel_mask_material.tres" id="4_mask"]
+[ext_resource type="Texture2D" uid="uid://bbgbqmeel1d0" path="res://ui/images/star_particle.png" id="5_c1id6"]
 
-[node name="InteractPanel" type="Control"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0t2q"]
+emission_shape = 3
+emission_box_extents = Vector3(190, 100, 0)
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 60.0
+initial_velocity_min = 4.0
+initial_velocity_max = 12.0
+angular_velocity_min = -25.0
+angular_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.12
+scale_max = 0.32
+color = Color(1, 0.9137255, 0.7019608, 0.8)
+
+[node name="InteractPanel" type="Control" unique_id=500952669]
+visible = false
 custom_minimum_size = Vector2(325, 147)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 325.0
 offset_bottom = 147.0
 mouse_filter = 2
-visible = false
 script = ExtResource("1_script")
 
-[node name="Viewport" type="SubViewportContainer" parent="."]
+[node name="Viewport" type="SubViewportContainer" parent="." unique_id=1398616245]
+material = ExtResource("4_mask")
 layout_mode = 0
 offset_right = 325.0
 offset_bottom = 147.0
 mouse_filter = 2
-material = ExtResource("4_mask")
 stretch = true
 
-[node name="BkgView" type="SubViewport" parent="Viewport"]
+[node name="BkgView" type="SubViewport" parent="Viewport" unique_id=1116914351]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(325, 147)
+render_target_update_mode = 0
 
-[node name="Background" type="NinePatchRect" parent="Viewport/BkgView"]
-texture = ExtResource("2_bkg")
+[node name="Background" type="NinePatchRect" parent="Viewport/BkgView" unique_id=193692302]
 offset_right = 325.0
 offset_bottom = 147.0
+texture = ExtResource("2_bkg")
 patch_margin_left = 24
 patch_margin_top = 24
 patch_margin_right = 24
 patch_margin_bottom = 24
 
-[node name="Frame" type="TextureRect" parent="."]
+[node name="Frame" type="TextureRect" parent="." unique_id=1145773703]
 layout_mode = 0
 offset_right = 325.0
 offset_bottom = 147.0
 mouse_filter = 2
 texture = ExtResource("3_frame")
 
-[node name="KeyLabel" type="Label" parent="."]
+[node name="KeyLabel" type="Label" parent="." unique_id=109905671]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 38.0
@@ -56,7 +73,7 @@ text = "E"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PromptLabel" type="Label" parent="."]
+[node name="PromptLabel" type="Label" parent="." unique_id=136744637]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 118.0
@@ -67,3 +84,14 @@ theme_override_font_sizes/font_size = 22
 text = "Interagir"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sparkles" type="GPUParticles2D" parent="." unique_id=129666963]
+unique_name_in_owner = true
+position = Vector2(162.5, 73.5)
+amount = 14
+texture = ExtResource("5_c1id6")
+lifetime = 2.5
+preprocess = 2.5
+randomness = 0.6
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_p0t2q")

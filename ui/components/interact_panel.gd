@@ -7,11 +7,14 @@ extends Control
 
 @onready var _key_label: Label = %KeyLabel
 @onready var _prompt_label: Label = %PromptLabel
+@onready var _sparkles: GPUParticles2D = %Sparkles
 
 func show_prompt(text: String, key: String = "E") -> void:
 	_prompt_label.text = text
 	_key_label.text = key
 	visible = true
+	_sparkles.emitting = true
 
 func hide_prompt() -> void:
 	visible = false
+	_sparkles.emitting = false
