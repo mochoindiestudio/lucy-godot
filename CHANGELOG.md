@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.20.1] - 2026-08-06
+
+### Changed
+- Rescaled the cat statue and touched up the surrounding terrain.
+
 ## [0.20.0] - 2026-08-06
 
 ### Added
