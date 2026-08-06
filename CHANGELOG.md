@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.21.1] - 2026-08-07
+
+### Changed
+- Tuned Terrain3D grass mesh assets (billboard/impostor LOD via `generated_type`, LOD distance ranges, `shadow_impostor`) to cut draw calls in vegetation-dense areas; investigated with the dev HUD across several map locations, which traced the framerate drops (40-60 FPS, up to 1330 draw calls / 142% of frame budget near the windmill) to Terrain3D's per-cell grass instancer batching rather than terrain mesh distance or shadow-casting lights.
+
 ## [0.21.0] - 2026-08-06
 
 ### Added
