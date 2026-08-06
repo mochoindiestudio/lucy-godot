@@ -6,9 +6,9 @@
 size = Vector3(0.06984384, 0.061464842, 0.06890616)
 
 [node name="Cat Statue" type="Node3D" unique_id=921751203]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
 [node name="Model" parent="." unique_id=1590765322 instance=ExtResource("1_i1ymn")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="Collision" type="StaticBody3D" parent="Model" unique_id=967244608]
 
