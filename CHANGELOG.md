@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.20.0] - 2026-08-06
+
+### Added
+- Collision for every building/prop prefab (`house_01`-`10`, `cat_statue`, `lamp_post`, `market_shop`, `market_stand`, `pharmacy`, `toy_shop`, `windmill`, `ship`, the `directions` signpost): a `StaticBody3D` with a `CollisionShape3D` auto-fit to the mesh's bounds, so the player can no longer walk through them. These prefabs are instanced into `scenes/game.scn`, so the fix applies map-wide.
+- Detailed collision for the three foot bridges in `scenes/game.scn`: a `ConcavePolygonShape3D` built from the bridge mesh's real geometry (`models/buildings/foot_bridge_collision_concave.tres`), shared across all three instances, plus a box collider for the pier.
+- `scenes/terrain_tree_colliders.gd`, attached to a new `TreeColliders` node in `scenes/game.scn`: Terrain3D's foliage instancer is visual-only (`MultiMesh`) and exposes no collision, so this reads real painted-tree transforms straight out of Terrain3D's saved region data at load time and spawns a lightweight capsule trunk collider per tree. Matches any painted mesh asset whose name starts with a configured species prefix (`solid_mesh_prefixes`, defaults cover Birch/CherryBlossom/CommonTree/GiantPine/Pine/TallThick/TwistedTree/DeadTree); grass, flowers, and pebbles are left walk-through.
+- `Toast` HUD component (`ui/components/toast.gd`/`.tscn`): `ui/hud.gd` now shows an `Interactable`'s new `message` export as a toast when the player interacts with it.
+
+### Changed
+- `Interactable` gained a `message` export (shown via the new toast on interact; empty means no message, just the `interacted` signal).
+- Player walk/sprint speed tuned (`walk_speed` 0.776, `sprint_speed` 3.0).
+- Registered `ui/lucy_theme.tres` as the project's global GUI theme; added the backing `ui/palette.gd` color source and `Bree_Serif`/`Merienda`/`Quicksand` font assets.
+- Updated the `godot_ai` editor addon to 3.1.2.
+
 ## [0.19.0] - 2026-08-05
 
 ### Added
