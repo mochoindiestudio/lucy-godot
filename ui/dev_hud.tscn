@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://pef0ga7u24be"]
+
+[ext_resource type="Script" uid="uid://vx0n3ux3ddky" path="res://ui/dev_hud.gd" id="1_qkupy"]
+
+[node name="DevHud" type="CanvasLayer" unique_id=1266417855]
+layer = 100
+script = ExtResource("1_qkupy")
+
+[node name="StatsLabel" type="Label" parent="." unique_id=49333122]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 17.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0.486, 1, 0.486, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "Dev HUD (F9)"
