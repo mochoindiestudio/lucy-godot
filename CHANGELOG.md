@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.21.0] - 2026-08-06
+
+### Added
+- Dev HUD (`ui/dev_hud.gd`/`.tscn`): FPS, frame/physics time, memory, and render stats overlay, toggled with F9 (`toggle_dev_hud`). Separate from the player-facing UI, registered as an autoload so it's available in any scene.
+- `flower_pot` prop, added to `House 01` in the Porto area.
+
+### Changed
+- Fixed lamp light performance: every lamp fixture was stacking 4 shadow-casting `OmniLight3D` nodes as a workaround for a light-inside-geometry self-shadow issue (53 of the scene's 54 lights were shadow-casters). Fixed at the source by reworking the lamp model geometry so a single centered `OmniLight3D` illuminates correctly, cutting per-fixture light count from 4 to 1 map-wide.
+- Reorganized lamp, lamp_post, ship, and wall_lamp prefabs/models from `prefabs|models/buildings/` into `prefabs|models/props/`; regrouped the port-area props (`Ship`, `Directions`, `House 01`, `LampPost`) under a new `Porto` node in `scenes/game.scn`.
+
 ## [0.20.1] - 2026-08-06
 
 ### Changed
