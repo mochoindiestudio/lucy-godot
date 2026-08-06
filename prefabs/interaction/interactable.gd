@@ -8,6 +8,9 @@ extends Area3D
 ## only broadcasts the result, it has no opinion on what happens next.
 
 @export var prompt_text: String = "Interagir"
+## Shown in a Toast (or later, a dialog) when the player interacts.
+## Left empty, interacting produces no message -- just the `interacted` signal.
+@export_multiline var message: String = ""
 ## World-space offset (added to global_position) where the prompt panel
 ## should float -- tune per object so it clears the model's head/roofline.
 @export var label_offset: Vector3 = Vector3(0, 2.0, 0)

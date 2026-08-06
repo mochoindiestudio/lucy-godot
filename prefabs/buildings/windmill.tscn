@@ -22,6 +22,9 @@ top_radius = 0.009765625
 bottom_radius = 0.009765625
 height = 0.13006592
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sg3q8"]
+size = Vector3(2.966212, 3.7848227, 3.37838)
+
 [node name="Windmill" type="Node3D" unique_id=2105207787]
 script = ExtResource("1_2qpdb")
 
@@ -38,3 +41,9 @@ mesh = SubResource("CylinderMesh_sbqex")
 
 [node name="Wall Lamp 2" parent="." unique_id=1246192810 instance=ExtResource("4_sg3q8")]
 transform = Transform3D(0.46962324, -0.021562498, 0.17026183, -0.0022594354, 0.4952182, 0.06894809, -0.17160687, -0.06552864, 0.46503457, 0.550991, 1.3273634, 0.91858584)
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=616905362]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1512851419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8113567, 0)
+shape = SubResource("BoxShape3D_sg3q8")

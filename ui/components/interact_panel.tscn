@@ -5,21 +5,64 @@
 [ext_resource type="Texture2D" uid="uid://eq8mdt7sqb00" path="res://ui/images/interact_panel.png" id="3_frame"]
 [ext_resource type="Material" path="res://ui/components/interact_panel_mask_material.tres" id="4_mask"]
 [ext_resource type="Texture2D" uid="uid://bbgbqmeel1d0" path="res://ui/images/star_particle.png" id="5_c1id6"]
+[ext_resource type="Theme" uid="uid://pl0rrw5bn16f" path="res://ui/lucy_theme.tres" id="5_p0t2q"]
+
+[sub_resource type="Curve" id="Curve_neis5"]
+_data = [Vector2(0.50184506, 1), 0.0, 3.9397216e-07, 0, 0, Vector2(1, 0), -7.1025066, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xpjlq"]
+curve = SubResource("Curve_neis5")
+
+[sub_resource type="Curve" id="Curve_7y6jb"]
+_data = [Vector2(0, 1), 0.0, 2.5253348, 0, 0, Vector2(1, 0), -3.658869, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7jeno"]
+curve = SubResource("Curve_7y6jb")
+
+[sub_resource type="Curve" id="Curve_p0t2q"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p0t2q"]
+curve = SubResource("Curve_p0t2q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0t2q"]
+lifetime_randomness = 0.15
+emission_shape_offset = Vector3(0, -70, 0)
+emission_shape_scale = Vector3(1, 0.5, 1)
 emission_shape = 3
-emission_box_extents = Vector3(190, 100, 0)
+emission_box_extents = Vector3(150, 60, 0)
 angle_max = 360.0
+velocity_pivot = Vector3(0, -2, 0)
 direction = Vector3(0, -1, 0)
-spread = 60.0
-initial_velocity_min = 4.0
-initial_velocity_max = 12.0
-angular_velocity_min = -25.0
-angular_velocity_max = 25.0
-gravity = Vector3(0, 0, 0)
-scale_min = 0.12
-scale_max = 0.32
-color = Color(1, 0.9137255, 0.7019608, 0.8)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = -20.000015
+angular_velocity_max = 19.999983
+orbit_velocity_min = -0.99999994
+orbit_velocity_max = 1.0000001
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 9.999977
+use_rotation_velocity_3d = true
+rotation_velocity_3d_min = Vector3(0, 0, 45)
+rotation_velocity_3d_max = Vector3(0, 0, 60)
+gravity = Vector3(0, 9, 0)
+scale_min = 0.03
+scale_max = 0.06
+scale_curve = SubResource("CurveTexture_p0t2q")
+color = Color(1, 0.95686275, 0.7529412, 0.6392157)
+alpha_curve = SubResource("CurveTexture_xpjlq")
+emission_curve = SubResource("CurveTexture_7jeno")
+turbulence_enabled = true
+turbulence_noise_strength = 3.52
+turbulence_noise_scale = 0.71
+turbulence_noise_speed = Vector3(1, 1, 1)
+turbulence_influence_max = 0.347
+turbulence_initial_displacement_min = -3.0999985
+turbulence_initial_displacement_max = 3.1000016
 
 [node name="InteractPanel" type="Control" unique_id=500952669]
 visible = false
@@ -28,6 +71,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 325.0
 offset_bottom = 147.0
+scale = Vector2(0.75, 0.75)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 script = ExtResource("1_script")
 
@@ -64,10 +109,13 @@ texture = ExtResource("3_frame")
 [node name="KeyLabel" type="Label" parent="." unique_id=109905671]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 38.0
-offset_top = 39.0
-offset_right = 108.0
-offset_bottom = 109.0
+offset_left = 41.0
+offset_top = 43.0
+offset_right = 100.0
+offset_bottom = 102.0
+theme = ExtResource("5_p0t2q")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
 theme_override_font_sizes/font_size = 32
 text = "E"
 horizontal_alignment = 1
@@ -78,19 +126,19 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = 118.0
 offset_top = 40.0
-offset_right = 300.0
+offset_right = 279.0
 offset_bottom = 108.0
-theme_override_font_sizes/font_size = 22
+theme = ExtResource("5_p0t2q")
+theme_override_font_sizes/font_size = 28
 text = "Interagir"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sparkles" type="GPUParticles2D" parent="." unique_id=129666963]
 unique_name_in_owner = true
 position = Vector2(162.5, 73.5)
-amount = 14
+amount = 25
 texture = ExtResource("5_c1id6")
-lifetime = 2.5
+lifetime = 1.55
 preprocess = 2.5
 randomness = 0.6
 local_coords = true

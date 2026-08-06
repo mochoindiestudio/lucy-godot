@@ -3,9 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://dyey75ri4fhp7" path="res://models/buildings/house_10.glb" id="1_ros22"]
 [ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_hq0mo"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ros22"]
+size = Vector3(7.597199, 3.6919606, 6.4253874)
+
 [node name="House 10" type="Node3D" unique_id=858829581]
 
 [node name="house_10" parent="." unique_id=1768069271 instance=ExtResource("1_ros22")]
 
 [node name="Lamp" parent="." unique_id=624308211 instance=ExtResource("2_hq0mo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24089, 2.0825331, 2.2403624)
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1665928968]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=428781200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5159022, 0)
+shape = SubResource("BoxShape3D_ros22")

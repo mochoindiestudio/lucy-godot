@@ -2,7 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://o0ifma25l03r" path="res://models/buildings/cat_statue.glb" id="1_i1ymn"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_47t8a"]
+size = Vector3(0.06984384, 0.061464842, 0.06890616)
+
 [node name="Cat Statue" type="Node3D" unique_id=921751203]
 
 [node name="Model" parent="." unique_id=1590765322 instance=ExtResource("1_i1ymn")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="Collision" type="StaticBody3D" parent="Model" unique_id=967244608]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Collision" unique_id=1008459042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.029267577, 0)
+shape = SubResource("BoxShape3D_47t8a")

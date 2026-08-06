@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://c8ywxg3jdxjqp"]
+
+[ext_resource type="Script" uid="uid://c0ly8xwwqia3e" path="res://ui/components/toast.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bfkiotjexxbg1" path="res://ui/images/decor.png" id="2_decor"]
+[ext_resource type="Theme" uid="uid://pl0rrw5bn16f" path="res://ui/lucy_theme.tres" id="3_theme"]
+
+[node name="Toast" type="Control" unique_id=160023915]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -70.0
+offset_right = 250.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1484730301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="DecorLeft" type="TextureRect" parent="HBox" unique_id=1199339978]
+custom_minimum_size = Vector2(68, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_decor")
+stretch_mode = 3
+
+[node name="MessageLabel" type="Label" parent="HBox" unique_id=991192060]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_theme")
+theme_override_colors/font_color = Color(0.9647059, 0.88235295, 0.74509805, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_font_sizes/font_size = 20
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DecorRight" type="TextureRect" parent="HBox" unique_id=560260273]
+custom_minimum_size = Vector2(68, 18)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_decor")
+stretch_mode = 3
+flip_h = true
+
+[node name="HideTimer" type="Timer" parent="." unique_id=694093289]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true

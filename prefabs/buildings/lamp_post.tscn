@@ -3,9 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://6dllkdwlyvfo" path="res://models/buildings/lamp_post.glb" id="1_wvptf"]
 [ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_5i1hp"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvptf"]
+size = Vector3(0.49578995, 2.7331471, 0.45253152)
+
 [node name="Lamp Post" type="Node3D" unique_id=735337667]
 
 [node name="lamp_post" parent="." unique_id=1883402145 instance=ExtResource("1_wvptf")]
 
 [node name="Lamp" parent="." unique_id=624308211 instance=ExtResource("2_5i1hp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2198962, 2.6159809, -0.009008765)
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1538115111]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=374128274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0057074726, 1.2879603, 0)
+shape = SubResource("BoxShape3D_wvptf")

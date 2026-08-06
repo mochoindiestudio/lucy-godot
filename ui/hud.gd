@@ -16,6 +16,7 @@ extends Control
 @onready var _minimap: Minimap = %Minimap
 @onready var _player: Node3D = get_node_or_null(player_path)
 @onready var _interact_panel: InteractPanel = %InteractPanel
+@onready var _toast: Toast = %Toast
 @onready var _interaction_area: InteractionArea = get_node_or_null(interaction_area_path)
 @onready var _camera: Camera3D = _get_camera()
 
@@ -42,11 +43,18 @@ func _process(_delta: float) -> void:
 	_update_interact_panel_position()
 
 func _on_nearest_interactable_changed(interactable: Interactable) -> void:
+	if _tracked_interactable != null:
+		_tracked_interactable.interacted.disconnect(_on_tracked_interactable_interacted)
 	_tracked_interactable = interactable
 	if interactable == null:
 		_interact_panel.hide_prompt()
 	else:
 		_interact_panel.show_prompt(interactable.prompt_text)
+		interactable.interacted.connect(_on_tracked_interactable_interacted)
+
+func _on_tracked_interactable_interacted() -> void:
+	if _tracked_interactable != null and not _tracked_interactable.message.is_empty():
+		_toast.show_message(_tracked_interactable.message)
 
 func _get_camera() -> Camera3D:
 	if _player == null:

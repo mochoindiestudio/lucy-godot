@@ -44,6 +44,10 @@ project/assembly_name="Lucy A luz do Amor"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_ai/plugin.cfg", "res://addons/sky_3d/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
+[gui]
+
+theme/custom="res://ui/lucy_theme.tres"
+
 [input]
 
 move_forward={

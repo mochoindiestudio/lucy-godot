@@ -3,9 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://babmb43vvxvhl" path="res://models/buildings/pharmacy.glb" id="1_4x6at"]
 [ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_r30ss"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_r30ss"]
+size = Vector3(7.5013733, 2.774115, 5.467295)
+
 [node name="Pharmacy" type="Node3D" unique_id=1477588246]
 
 [node name="Model" parent="." unique_id=744098261 instance=ExtResource("1_4x6at")]
 
 [node name="Lamp" parent="Model" unique_id=624308211 instance=ExtResource("2_r30ss")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7596794, 1.9994404, 1.625298)
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=1710935639]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=2001024035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048049927, 1.3797333, 0.14623499)
+shape = SubResource("BoxShape3D_r30ss")

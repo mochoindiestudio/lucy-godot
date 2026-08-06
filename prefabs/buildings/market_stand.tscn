@@ -2,6 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://d0ls3pwbpx0d4" path="res://models/buildings/market_stand.glb" id="1_lr1b3"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_8br1q"]
+size = Vector3(3.608331, 1.4121184, 2.2702312)
+
 [node name="Market Stand" type="Node3D" unique_id=1187537279]
 
 [node name="Model" parent="." unique_id=2074906455 instance=ExtResource("1_lr1b3")]
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=975015724]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1985635039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.042935133, 0.6103561, 0.029158473)
+shape = SubResource("BoxShape3D_8br1q")
