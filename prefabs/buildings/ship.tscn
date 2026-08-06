@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://c8a2n6y17w0h"]
-
-[ext_resource type="Script" uid="uid://cnistrvk427dm" path="res://prefabs/buildings/ship.gd" id="1_ship"]
-[ext_resource type="PackedScene" uid="uid://4bivd7083kwb" path="res://models/buildings/ship.glb" id="2_model"]
-
-[node name="Ship" type="Node3D" unique_id=1302290052]
-script = ExtResource("1_ship")
-
-[node name="Model" parent="." unique_id=120215880 instance=ExtResource("2_model")]

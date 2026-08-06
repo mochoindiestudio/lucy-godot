@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://db7fvsf0ebx7x"]
 
 [ext_resource type="PackedScene" uid="uid://b72ygbm40qhe3" path="res://models/buildings/house_05.glb" id="1_ug1ch"]
-[ext_resource type="PackedScene" uid="uid://cl5nov3aq2yfj" path="res://prefabs/buildings/wall_lamp_1.tscn" id="2_802u1"]
+[ext_resource type="PackedScene" uid="uid://cl5nov3aq2yfj" path="res://prefabs/props/wall_lamp_1.tscn" id="2_802u1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_802u1"]
 size = Vector3(7.5952806, 3.1578796, 3.8834589)

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://g7vohngfb3i2"]
+
+[ext_resource type="PackedScene" uid="uid://6kukprducgyx" path="res://models/buildings/flower_pot.glb" id="1_3soi7"]
+
+[node name="FlowerPot" type="Node3D" unique_id=1104205804]
+
+[node name="flower_pot" parent="." unique_id=1331455412 instance=ExtResource("1_3soi7")]

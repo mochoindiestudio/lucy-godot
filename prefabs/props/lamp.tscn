@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://rwrix5l4tchw"]
+
+[ext_resource type="PackedScene" uid="uid://b4hg5jylk61lb" path="res://models/props/lamp.glb" id="1_c6ddh"]
+[ext_resource type="Script" uid="uid://50wf5e2ekgi5" path="res://prefabs/props/lamp.gd" id="1_mhyew"]
+
+[node name="Lamp" type="Node3D" unique_id=665326117]
+script = ExtResource("1_mhyew")
+
+[node name="lamp" parent="." unique_id=1460143647 instance=ExtResource("1_c6ddh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11639288, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=459408803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25748652, 0)
+light_color = Color(1, 0.9882353, 0.8392157, 1)
+light_volumetric_fog_energy = 5.0
+light_size = 0.5
+light_specular = 1.5
+distance_fade_enabled = true
+omni_range = 6.0

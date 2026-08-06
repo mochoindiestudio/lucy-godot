@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://doyvshkmmpie0"]
+
+[ext_resource type="PackedScene" uid="uid://bifb843kvt1rb" path="res://models/props/lamp_fixture.glb" id="1_hu4p0"]
+[ext_resource type="PackedScene" uid="uid://rwrix5l4tchw" path="res://prefabs/props/lamp.tscn" id="2_4iiw7"]
+
+[node name="WallLamp3" type="Node3D" unique_id=1228383725]
+
+[node name="lamp_fixture" parent="." unique_id=190640484 instance=ExtResource("1_hu4p0")]
+
+[node name="Lamp" parent="." unique_id=665326117 instance=ExtResource("2_4iiw7")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.13391043, 0.5137789)

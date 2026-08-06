@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4511er4n0w1f"]
 
 [ext_resource type="Script" uid="uid://dudlfcu7yfy8w" path="res://prefabs/props/directions.gd" id="1_xw5w2"]
-[ext_resource type="PackedScene" uid="uid://ckwg2lau1i42j" path="res://models/buildings/directions_signpost.glb" id="1_y3kga"]
+[ext_resource type="PackedScene" uid="uid://ckwg2lau1i42j" path="res://models/props/directions_signpost.glb" id="1_y3kga"]
 [ext_resource type="Script" uid="uid://knr3xrqj3kfo" path="res://prefabs/interaction/interactable.gd" id="3_65c1c"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jixtu"]
@@ -18,7 +18,7 @@ script = ExtResource("1_xw5w2")
 [node name="Interactable" type="Area3D" parent="." unique_id=372950358]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("3_65c1c")
-message = "O mercado fica ao norte, a praia ao sul"
+message = "Mercado ao Norte, Porto à Oeste, Vila à Leste"
 label_offset = Vector3(0, 1.125, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=761625173]

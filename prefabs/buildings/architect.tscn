@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfgqlurhmbv6l"]
 
 [ext_resource type="PackedScene" uid="uid://spbvo20bohlv" path="res://models/buildings/architect.glb" id="1_cqq7e"]
-[ext_resource type="PackedScene" uid="uid://b7g783hkg67ku" path="res://prefabs/buildings/lamp.tscn" id="2_8nvd6"]
+[ext_resource type="PackedScene" uid="uid://doyvshkmmpie0" path="res://prefabs/props/wall_lamp_2.tscn" id="2_8nvd6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8nvd6"]
 size = Vector3(7.6676245, 2.7291908, 5.477732)
@@ -10,11 +10,11 @@ size = Vector3(7.6676245, 2.7291908, 5.477732)
 
 [node name="Model" parent="." unique_id=21964148 instance=ExtResource("1_cqq7e")]
 
-[node name="Lamp" parent="." unique_id=624308211 instance=ExtResource("2_8nvd6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.973135, 1.7746276, 1.624338)
-
 [node name="Collision" type="StaticBody3D" parent="." unique_id=1671624202]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1075190875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03545046, 1.27524, 0.17148328)
 shape = SubResource("BoxShape3D_8nvd6")
+
+[node name="WallLamp3" parent="." unique_id=1228383725 instance=ExtResource("2_8nvd6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9360738, 1.6730357, 1.1080974)

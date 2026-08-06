@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bcblpmplainph" path="res://prefabs/buildings/windmill.gd" id="1_2qpdb"]
 [ext_resource type="PackedScene" uid="uid://br60s7y4ktif8" path="res://models/buildings/windmill_base.glb" id="2_i5i4f"]
 [ext_resource type="PackedScene" uid="uid://t14jhkn6px8g" path="res://models/buildings/windmill_rotor.glb" id="3_oitkk"]
-[ext_resource type="PackedScene" uid="uid://sa2ucy05cjqr" path="res://prefabs/buildings/wall_lamp_2.tscn" id="4_sg3q8"]
+[ext_resource type="PackedScene" uid="uid://doyvshkmmpie0" path="res://prefabs/props/wall_lamp_2.tscn" id="4_sg3q8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g14r7"]
 
@@ -39,11 +39,11 @@ transform = Transform3D(5.3239326, 0, 1.3804853, 0, 5.5, 0, -1.3804853, 0, 5.323
 transform = Transform3D(1.0000015, 1.0579824e-06, -9.769963e-15, 0, -4.3711392e-08, -1, -1.0579824e-06, 1.0000015, -4.371141e-08, -1.8626451e-08, 0, -0.08886765)
 mesh = SubResource("CylinderMesh_sbqex")
 
-[node name="Wall Lamp 2" parent="." unique_id=1246192810 instance=ExtResource("4_sg3q8")]
-transform = Transform3D(0.46962324, -0.021562498, 0.17026183, -0.0022594354, 0.4952182, 0.06894809, -0.17160687, -0.06552864, 0.46503457, 0.550991, 1.3273634, 0.91858584)
-
 [node name="Collision" type="StaticBody3D" parent="." unique_id=616905362]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=1512851419]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8113567, 0)
 shape = SubResource("BoxShape3D_sg3q8")
+
+[node name="WallLamp" parent="." unique_id=1228383725 instance=ExtResource("4_sg3q8")]
+transform = Transform3D(0.46954712, 0, 0.17182986, 0, 0.5, 0, -0.17182985, 0, 0.46954718, 0.4895093, 1.3046513, 0.7506542)
