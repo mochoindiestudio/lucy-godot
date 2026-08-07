@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.22.0] - 2026-08-07
+
+### Added
+- Main menu scene (`scenes/main_menu.tscn`/`.gd`), now the project's main scene: full-screen `ui/images/background.png` (aspect-covered), game title top-left, studio (`assets/logo_studio.png`) and client (`assets/logo_turma.png`) logos bottom-right, and a looping windmill rotor animation (`ui/images/rotor.png`, `AnimationPlayer` spinning it around its own pivot). Any key press or mouse click loads `scenes/game.scn`.
+
+### Changed
+- Reworked `ui/images/background.png` to drop the baked-in windmill blades now that they're a separate animated sprite.
+
 ## [0.21.1] - 2026-08-07
 
 ### Changed

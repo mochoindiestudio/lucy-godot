@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cl0ex0fal7owp"]
+
+[ext_resource type="Script" uid="uid://bppyjqhsooevu" path="res://scenes/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dy4gayoum16ho" path="res://ui/images/background.png" id="2_background"]
+[ext_resource type="Texture2D" uid="uid://clliipc68ftkh" path="res://ui/images/game_title.png" id="3_title"]
+[ext_resource type="Texture2D" uid="uid://u84cty11qgkd" path="res://assets/logo_studio.png" id="4_studio"]
+[ext_resource type="Texture2D" uid="uid://bom3eiqnkmut0" path="res://assets/logo_turma.png" id="5_turma"]
+[ext_resource type="Texture2D" uid="uid://ckkb4dcsil6jg" path="res://ui/images/rotor.png" id="6_rotor"]
+
+[sub_resource type="Animation" id="Animation_rotor_spin"]
+resource_name = "spin"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/Rotor:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 360.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rotor"]
+_data = {
+&"spin": SubResource("Animation_rotor_spin")
+}
+
+[node name="Main Menu" type="Control" unique_id=1677486201]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=844877105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Rotor" type="TextureRect" parent="Background" unique_id=2043510914]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.763
+anchor_top = 0.104
+anchor_right = 0.763
+anchor_bottom = 0.104
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+pivot_offset = Vector2(30, 30)
+mouse_filter = 2
+texture = ExtResource("6_rotor")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RotorSpin" type="AnimationPlayer" parent="." unique_id=1815792609]
+libraries/ = SubResource("AnimationLibrary_rotor")
+autoplay = &"spin"
+
+[node name="TitleLogo" type="TextureRect" parent="." unique_id=104679647]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 660.0
+offset_bottom = 360.0
+mouse_filter = 2
+texture = ExtResource("3_title")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="LogoRow" type="HBoxContainer" parent="." unique_id=898731118]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -135.0
+offset_right = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="StudioLogo" type="TextureRect" parent="LogoRow" unique_id=27227485]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_studio")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ClientLogo" type="TextureRect" parent="LogoRow" unique_id=505696299]
+custom_minimum_size = Vector2(120, 150)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -10)
+mouse_filter = 2
+texture = ExtResource("5_turma")
+expand_mode = 1
+stretch_mode = 5

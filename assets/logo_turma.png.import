@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy4gayoum16ho"
-path="res://.godot/imported/background.png-a3934c8ba332f72629d164c6a4d4bbd8.ctex"
+uid="uid://bom3eiqnkmut0"
+path="res://.godot/imported/logo_turma.png-e00cd5c79b02e4615a4f97c2fd94cc8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/images/background.png"
-dest_files=["res://.godot/imported/background.png-a3934c8ba332f72629d164c6a4d4bbd8.ctex"]
+source_file="res://assets/logo_turma.png"
+dest_files=["res://.godot/imported/logo_turma.png-e00cd5c79b02e4615a4f97c2fd94cc8e.ctex"]
 
 [params]
 
